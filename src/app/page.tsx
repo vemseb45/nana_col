@@ -5,7 +5,8 @@ import Collection from "@/frontend/modules/landing/components/Collection";
 import About from "@/frontend/modules/landing/components/About";
 import Newsletter from "@/frontend/modules/landing/components/Newsletter";
 import Footer from "@/frontend/modules/landing/components/Footer";
-import ThemeToggle from "@/frontend/components/ThemeToggle";
+// Ruta de ThemeToggle corregida para coincidir con tu árbol de directorios
+import ThemeToggle from "@/frontend/modules/landing/components/ThemeToggle"; 
 
 export default function HomePage() {
   return (
