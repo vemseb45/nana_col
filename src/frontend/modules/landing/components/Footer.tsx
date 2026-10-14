@@ -21,12 +21,12 @@ export default function Footer() {
               <div className="h-10 w-10 sm:h-12 sm:w-12 rounded-full overflow-hidden p-0.5 bg-gradient-to-tr from-primary to-orange-300 shadow-sm flex-shrink-0">
                 <img
                   src="/logo.png"
-                  alt="Nana Home Logo Oficial"
+                  alt="Nana.col Logo Oficial"
                   className="h-full w-full object-cover rounded-full bg-white"
                 />
               </div>
               <span className="font-display text-xl sm:text-2xl font-bold text-gray-900">
-                Nana <span className="text-primary italic font-normal">Home</span>
+                Nana<span className="text-primary italic font-normal">.col</span>
               </span>
             </div>
             <p className="text-gray-500 text-xs sm:text-sm leading-relaxed mb-4 sm:mb-6">
@@ -37,7 +37,7 @@ export default function Footer() {
                 href={BRAND_DATA.socials.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Instagram de Nana Home"
+                aria-label="Instagram de Nana.col"
                 className="h-8 w-8 sm:h-9 sm:w-9 rounded-full bg-orange-50 text-gray-600 hover:bg-primary hover:text-white transition-all flex items-center justify-center text-sm shadow-sm"
               >
                 <span className="material-icons-outlined text-base sm:text-lg">photo_camera</span>
@@ -46,7 +46,7 @@ export default function Footer() {
                 href={BRAND_DATA.socials.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Facebook de Nana Home"
+                aria-label="Facebook de Nana.col"
                 className="h-8 w-8 sm:h-9 sm:w-9 rounded-full bg-orange-50 text-gray-600 hover:bg-primary hover:text-white transition-all flex items-center justify-center text-sm shadow-sm"
               >
                 <span className="material-icons-outlined text-base sm:text-lg">facebook</span>
@@ -55,7 +55,7 @@ export default function Footer() {
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="WhatsApp de Nana Home"
+                aria-label="WhatsApp de Nana.col"
                 className="h-8 w-8 sm:h-9 sm:w-9 rounded-full bg-emerald-50 text-emerald-600 hover:bg-emerald-600 hover:text-white transition-all flex items-center justify-center text-sm shadow-sm"
               >
                 <span className="material-icons-outlined text-base sm:text-lg">chat</span>
@@ -154,7 +154,7 @@ export default function Footer() {
         {/* Barra de Copyright */}
         <div className="border-t border-gray-100 pt-6 sm:pt-8 flex flex-col md:flex-row justify-between items-center gap-3">
           <p className="text-[11px] sm:text-xs text-gray-400 text-center md:text-left">
-            © {new Date().getFullYear()} Nana Home. Todos los derechos reservados. San Andresito Av. 68, Bogotá.
+            © {new Date().getFullYear()} Nana.col. Todos los derechos reservados. San Andresito Av. 68, Bogotá.
           </p>
           <div className="flex space-x-4 sm:space-x-6 text-[11px] sm:text-xs text-gray-400">
             <span className="hover:text-primary transition-colors cursor-pointer">Catálogo Visual</span>

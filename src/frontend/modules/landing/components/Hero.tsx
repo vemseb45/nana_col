@@ -10,7 +10,7 @@ export default function Hero() {
       {/* Imagen de Fondo con degradado refinado */}
       <div className="absolute inset-0 z-0">
         <img
-          alt="Colección Tropical Nana Home"
+          alt="Colección Tropical Nana.col"
           className="w-full h-full object-cover object-center scale-105"
           src="/img/modelo_vestido_flores.jpeg"
         />

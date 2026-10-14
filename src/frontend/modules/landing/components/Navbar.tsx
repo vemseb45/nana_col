@@ -63,22 +63,22 @@ export default function Navbar({ onSearchClick }: NavbarProps) {
             ))}
           </div>
 
-          {/* Logo Central Oficial de Nana Home */}
+          {/* Logo Central Oficial de Nana.col */}
           <div className="flex-shrink-0 flex items-center justify-center">
             <a
               href="#"
               className="flex items-center gap-2 sm:gap-3 group focus:outline-none"
-              title="Nana Home - Inicio"
+              title="Nana.col - Inicio"
             >
               <div className="relative h-11 w-11 sm:h-14 sm:w-14 rounded-full overflow-hidden p-0.5 bg-gradient-to-tr from-primary to-orange-300 shadow-md group-hover:scale-105 transition-transform duration-300">
                 <img
                   src="/logo.png"
-                  alt="Nana Home Logo Oficial"
+                  alt="Nana.col Logo Oficial"
                   className="h-full w-full object-cover rounded-full bg-white"
                 />
               </div>
               <span className="font-display text-lg sm:text-2xl font-bold tracking-tight text-gray-900 hidden sm:inline">
-                Nana <span className="text-primary font-normal italic">Home</span>
+                Nana<span className="text-primary font-normal italic">.col</span>
               </span>
             </a>
           </div>

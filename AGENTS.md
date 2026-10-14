@@ -8,9 +8,9 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 <!-- END:nextjs-agent-rules -->
 
-# Manual y Reglas de Desarrollo — Nana Home
+# Manual y Reglas de Desarrollo — Nana.col
 
-Este documento establece las reglas obligatorias de arquitectura, diseño, patrones de código y reglas de negocio para el desarrollo de la aplicación web de **Nana Home**. Toda modificación o nueva funcionalidad debe apegarse estrictamente a estas directrices.
+Este documento establece las reglas obligatorias de arquitectura, diseño, patrones de código y reglas de negocio para el desarrollo de la aplicación web de **Nana.col**. Toda modificación o nueva funcionalidad debe apegarse estrictamente a estas directrices.
 
 ---
 
@@ -58,7 +58,7 @@ La estructura modular se divide limpiamente entre capas de presentación y lógi
 ```
 nana_col/
 ├── public/
-│   ├── favicon.ico                   # Favicon oficial con el logo real de Nana Home
+│   ├── favicon.ico                   # Favicon oficial con el logo real de Nana.col
 │   ├── logo.png                      # Logo original de alta resolución
 │   └── img/                          # Banco de imágenes locales
 │       ├── modelo_vestido_*.jpeg     # Fotografía en modelo (vista primaria)
@@ -136,6 +136,9 @@ nana_col/
 10. **Tema Visual Único (Cálido y Luminoso — Sin Modo Oscuro):**
     - Por directriz oficial de marca, la aplicación web opera exclusivamente con un diseño cálido, veraniego y luminoso (`#FFF8F0`, `#FFFFFF`, acento coral `#E57C6F`).
     - El modo oscuro y el botón conmutador de temas han sido eliminados por completo del código y de la interfaz para preservar una identidad visual pura y consistente.
+11. **Dominio Oficial y Canales de Marca (Nana.col):**
+    - Dominio web oficial en Vercel: `https://nana-col.vercel.app/`.
+    - Nombre y usuario oficial de marca en todos los canales y redes: **Nana.col** (`@nana.col` en Instagram, Facebook y TikTok). Prohibido el uso de nanahome.
 
 ---
 

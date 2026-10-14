@@ -19,7 +19,7 @@ export default function About() {
             <div className="absolute -top-3 -left-3 sm:-top-4 sm:-left-4 w-full h-full border-2 border-primary rounded-2xl sm:rounded-3xl transform -rotate-2 hidden sm:block"></div>
             <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl sm:shadow-2xl z-10 aspect-[4/5] bg-orange-100 max-w-sm sm:max-w-none mx-auto">
               <img
-                alt="Esencia Nana Home - Mujer en la playa"
+                alt="Esencia Nana.col - Moda playera"
                 className="w-full h-full object-cover object-center"
                 src="/img/modelo_vestido_petroleo.jpeg"
                 loading="lazy"
@@ -46,7 +46,7 @@ export default function About() {
               <span className="text-primary italic font-normal">momentos eternos</span>
             </h2>
             <p className="text-gray-600 text-xs sm:text-base mb-3 sm:mb-6 leading-relaxed">
-              Nana nace de la brisa marina y la calidez del sol. Cada prenda es un homenaje a la belleza natural, confeccionada con lycras colombianas de alta resistencia y trajes infantiles diseñados para el juego libre y seguro.
+              Nana.col nace de la brisa marina y la calidez del sol. Cada prenda es un homenaje a la belleza natural, confeccionada con lycras colombianas de alta resistencia y trajes infantiles diseñados para el juego libre y seguro.
             </p>
             <p className="text-gray-600 text-xs sm:text-sm leading-relaxed mb-6 sm:mb-8">
               Visítanos en nuestra tienda física en Bogotá o coordina tu compra personalizada vía WhatsApp con envíos rápidos a nivel nacional.

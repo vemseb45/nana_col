@@ -8,9 +8,11 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 <!-- END:nextjs-agent-rules -->
 
-# Nana Home — Arquitectura del Proyecto & Principios de Desarrollo
+# Nana.col — Arquitectura del Proyecto & Principios de Desarrollo
 
-Documento maestro para guiar el desarrollo, mantenimiento y escalabilidad del proyecto web de **Nana Home** (Moda playera, vestidos de baño para mujer y trajes de baño infantiles).
+**Despliegue oficial en Vercel:** [https://nana-col.vercel.app/](https://nana-col.vercel.app/)
+
+Documento maestro para guiar el desarrollo, mantenimiento y escalabilidad del proyecto web de **Nana.col** (Moda playera, vestidos de baño para mujer y trajes de baño infantiles).
 
 
 ## 2. Estructura de Directorios
@@ -18,8 +20,8 @@ Documento maestro para guiar el desarrollo, mantenimiento y escalabilidad del pr
 ```
 nana_col/
 ├── public/
-│   ├── favicon.ico                   # Favicon oficial con el logo real
-│   ├── logo.png                      # Logo oficial de alta resolución de Nana Home
+│   ├── favicon.ico                   # Favicon oficial con el logo real de Nana.col
+│   ├── logo.png                      # Logo oficial de alta resolución de Nana.col
 │   └── img/                          # Banco de imágenes (prenda y modelo)
 │       ├── modelo_vestido_*.jpeg     # Fotografía puesta en modelo
 │       ├── vestido_*.jpeg            # Fotografía exclusiva de la prenda
@@ -52,7 +54,6 @@ nana_col/
 │   │   │   ├── ProductCard.tsx       # Tarjeta de producto con cambio modelo <-> prenda
 │   │   │   ├── ProductDetailModal.tsx# Modal de vista rápida y asesoría
 │   │   │   ├── SearchModal.tsx       # Búsqueda reactiva por nombre, color o personaje
-│   │   │   ├── ThemeToggle.tsx       # Modo oscuro/claro con useSyncExternalStore
 │   │   │   └── WhatsAppFloatingButton.tsx # Botón flotante de atención en vivo
 │   │   └── modules/landing/
 │   │       ├── LandingView.tsx       # Orquestador del frontend

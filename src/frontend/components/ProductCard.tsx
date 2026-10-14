@@ -47,7 +47,7 @@ export default function ProductCard({ product, onOpenQuickView }: ProductCardPro
         {/* Imagen Principal: MODELO puesta */}
         <img
           src={product.primaryImage}
-          alt={`${product.name} en modelo - Nana Home`}
+          alt={`${product.name} en modelo - Nana.col`}
           loading="lazy"
           className={`h-full w-full object-cover object-center transition-all duration-700 ${
             showDressOnMobile && hasSecondaryImage ? 'opacity-0' : 'opacity-100'
@@ -58,7 +58,7 @@ export default function ProductCard({ product, onOpenQuickView }: ProductCardPro
         {hasSecondaryImage && product.hoverImage && (
           <img
             src={product.hoverImage}
-            alt={`${product.name} (solo prenda) - Nana Home`}
+            alt={`${product.name} (solo prenda) - Nana.col`}
             loading="lazy"
             className={`absolute inset-0 h-full w-full object-cover object-center transition-opacity duration-500 ease-in-out ${
               showDressOnMobile

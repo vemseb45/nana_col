@@ -15,8 +15,8 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://nanahome.com"),
-  title: "Nana Home - Vestidos de Baño & Colección Tropical",
+  metadataBase: new URL("https://nana-col.vercel.app"),
+  title: "Nana.col - Vestidos de Baño & Colección Tropical",
   description:
     "Moda playera y vestidos de baño exclusivos para mujer y niños en Bogotá. Diseños únicos confeccionados con amor por el océano y protección solar UPF 50+.",
   icons: {
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     apple: "/logo.png",
   },
   openGraph: {
-    title: "Nana Home - Colección Tropical & Kids",
+    title: "Nana.col - Colección Tropical & Kids",
     description: "Vestidos de baño para mujer y trajes infantiles en Bogotá. San Andresito Av. 68.",
     images: ["/logo.png"],
   },

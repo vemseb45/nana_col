@@ -97,7 +97,7 @@ export const WOMEN_PRODUCTS: ProductItem[] = [
     colorName: "Estampado Botánico",
     price: "$155.000 COP",
     originalPrice: "$180.000 COP",
-    description: "Estampado botánico exclusivo de Nana Home que rinde tributo a la flora tropical costera. Colores vivos que se mantienen intactos con el paso del tiempo.",
+    description: "Estampado botánico exclusivo de Nana.col que rinde tributo a la flora tropical costera. Colores vivos que se mantienen intactos con el paso del tiempo.",
     material: "Poliéster ecológico texturizado y elastano de grado marino.",
     features: [
       "Estampado digital eco-friendly de alta definición",
