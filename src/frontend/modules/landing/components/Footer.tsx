@@ -99,12 +99,6 @@ export default function Footer() {
             </h4>
             <ul className="space-y-2.5 sm:space-y-3 text-xs sm:text-sm text-gray-500">
               <li>
-                <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors flex items-center gap-1.5 font-medium text-emerald-600">
-                  <span className="material-icons-outlined text-sm">chat</span>
-                  Asesoría de Tallas por WhatsApp
-                </a>
-              </li>
-              <li>
                 <a href="#about" className="hover:text-primary transition-colors">
                   Protección Solar UPF 50+
                 </a>

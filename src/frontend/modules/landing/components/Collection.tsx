@@ -79,30 +79,6 @@ export default function Collection({ onOpenQuickView }: CollectionProps) {
             />
           ))}
         </div>
-
-        {/* Banner Informativo Inferior */}
-        <div className="mt-10 sm:mt-16 p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-orange-50/70 border border-orange-100 text-center flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4">
-          <div className="flex items-center gap-2.5 text-left">
-            <span className="material-icons-outlined text-2xl sm:text-3xl text-primary p-2 bg-white rounded-xl shadow-sm">
-              verified
-            </span>
-            <div>
-              <h4 className="text-xs sm:text-sm font-bold text-gray-900">
-                Prendas Confeccionadas con Amor
-              </h4>
-              <p className="text-[11px] sm:text-xs text-gray-500">
-                ¿Dudas con tu talla? Te asesoramos en vivo por WhatsApp con fotos y medidas antes de tu pedido.
-              </p>
-            </div>
-          </div>
-
-          <a
-            href="#about"
-            className="text-[11px] sm:text-xs uppercase tracking-wider font-bold text-primary hover:text-orange-600 flex items-center gap-1 transition-colors whitespace-nowrap"
-          >
-            Conocer nuestra esencia <span className="material-icons-outlined text-sm">arrow_forward</span>
-          </a>
-        </div>
       </div>
     </section>
   );

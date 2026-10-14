@@ -30,11 +30,10 @@ export default function Navbar({ onSearchClick }: NavbarProps) {
 
   return (
     <nav
-      className={`fixed top-0 left-0 w-full z-40 transition-all duration-300 ${
-        isScrolled
+      className={`fixed top-0 left-0 w-full z-40 transition-all duration-300 ${isScrolled
           ? 'bg-background-light/95 backdrop-blur-md shadow-md border-b border-orange-100/70'
           : 'bg-background-light/85 backdrop-blur-sm border-b border-transparent'
-      }`}
+        }`}
     >
       <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16 sm:h-20">
@@ -98,17 +97,6 @@ export default function Navbar({ onSearchClick }: NavbarProps) {
               </button>
             )}
 
-            {/* Asesoría Directa por WhatsApp */}
-            <a
-              href={whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              title="Hablar con una asesora por WhatsApp"
-              className="flex items-center gap-1 sm:gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-full bg-primary/10 text-primary hover:bg-primary hover:text-white transition-all text-[11px] sm:text-xs font-bold uppercase tracking-wider shadow-sm"
-            >
-              <span className="material-icons-outlined text-sm sm:text-base">chat</span>
-              <span>Asesoría</span>
-            </a>
           </div>
         </div>
       </div>
