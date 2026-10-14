@@ -160,6 +160,7 @@ export default function InteractiveProductImage({
             src={src}
             alt={alt}
             draggable={false}
+            decoding="async"
             className={`pointer-events-none ${
               viewMode === 'contain'
                 ? 'max-h-full max-w-full object-contain'

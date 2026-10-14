@@ -33,6 +33,7 @@ export default function Categories() {
                   className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-110"
                   src={cat.img}
                   loading="lazy"
+                  decoding="async"
                 />
                 <div className="absolute inset-0 bg-black/15 group-hover:bg-black/0 transition-colors"></div>
 

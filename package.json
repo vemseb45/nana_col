@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "og:images": "node scripts/generate-og-images.mjs"
+    "og:images": "node scripts/generate-og-images.mjs",
+    "optimize:images": "node scripts/optimize-catalog-images.mjs"
   },
   "dependencies": {
     "@prisma/client": "^5.22.0",

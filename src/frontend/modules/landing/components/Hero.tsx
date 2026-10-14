@@ -13,6 +13,9 @@ export default function Hero() {
           alt="Colección Tropical Nana.col"
           className="w-full h-full object-cover object-center scale-105"
           src="/img/modelo_vestido_flores.jpeg"
+          loading="eager"
+          decoding="async"
+          fetchPriority="high"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-background-light via-background-light/60 to-black/60"></div>
       </div>

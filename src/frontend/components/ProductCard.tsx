@@ -49,6 +49,7 @@ export default function ProductCard({ product, onOpenQuickView }: ProductCardPro
           src={product.primaryImage}
           alt={`${product.name} en modelo - Nana.col`}
           loading="lazy"
+          decoding="async"
           className={`h-full w-full object-cover object-center transition-all duration-700 ${
             showDressOnMobile && hasSecondaryImage ? 'opacity-0' : 'opacity-100'
           } ${hasSecondaryImage ? 'group-hover:scale-105' : 'group-hover:scale-110'}`}
@@ -60,6 +61,7 @@ export default function ProductCard({ product, onOpenQuickView }: ProductCardPro
             src={product.hoverImage}
             alt={`${product.name} (solo prenda) - Nana.col`}
             loading="lazy"
+            decoding="async"
             className={`absolute inset-0 h-full w-full object-cover object-center transition-opacity duration-500 ease-in-out ${
               showDressOnMobile
                 ? 'opacity-100'

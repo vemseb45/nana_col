@@ -23,6 +23,7 @@ export default function About() {
                 className="w-full h-full object-cover object-center"
                 src="/img/modelo_vestido_petroleo.jpeg"
                 loading="lazy"
+                decoding="async"
               />
             </div>
             
