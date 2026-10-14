@@ -24,7 +24,7 @@ export const CATEGORIES: CategoryItem[] = [
     desc: "Siluetas vanguardistas, moldeadoras y cortes clásicos con soporte premium.",
     img: "/img/modelo_vestido_flores.jpeg",
     radius: "rounded-[40%_60%_70%_30%/40%_50%_60%_50%]",
-    tag: "Colección 2024",
+    tag: "Colección 2026",
     targetId: "collection-mujer",
   },
   {
