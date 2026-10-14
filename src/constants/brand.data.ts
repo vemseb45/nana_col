@@ -21,32 +21,57 @@ export const BRAND_DATA: BrandInfo = {
 };
 
 /**
- * Generador de enlace directo a WhatsApp incluyendo la referencia e imagen del vestido (DRY)
+ * Dominio canónico oficial. Determinista en servidor y cliente (evita mismatch de hidratación).
+ */
+export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || "https://nana-col.vercel.app").replace(/\/$/, "");
+
+/**
+ * Ruta pública de la página individual de cada prenda (usada para la vista previa en WhatsApp).
+ */
+export function getProductPagePath(productId: string): string {
+  return `/p/${productId}`;
+}
+
+/**
+ * Código de referencia corto para que el asesor identifique la prenda (ej. NC-VESTIDO-AZUL).
+ */
+export function getProductReference(productId: string): string {
+  return `NC-${productId.toUpperCase()}`;
+}
+
+/**
+ * Miniatura liviana (< 300 KB) generada por `npm run og:images` para la tarjeta de WhatsApp.
+ * Debe aplicar la misma normalización ASCII que scripts/generate-og-images.mjs.
+ */
+export function getOgImagePath(imagePath: string): string {
+  const fileName = imagePath.split("/").pop() ?? "";
+  const baseName = fileName.replace(/\.[^.]+$/, "");
+  const asciiName = baseName.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  return `/og/${asciiName}.jpg`;
+}
+
+/**
+ * Generador de enlace directo a WhatsApp con la prenda seleccionada (DRY).
+ * WhatsApp no permite adjuntar imágenes desde un enlace wa.me, por eso el mensaje
+ * termina con la página de la prenda: WhatsApp la convierte en una tarjeta con la foto.
  */
 export function getWhatsAppProductUrl(product: {
+  id: string;
   name: string;
   price?: string;
   colorName?: string;
-  primaryImage?: string;
 }): string {
-  // Usar dominio base canónico para consistencia estricta entre SSR y cliente (evita mismatch de hidratación)
-  // Además, WhatsApp requiere un dominio web público accesible para generar la tarjeta de vista previa enriquecida
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://nana-col.vercel.app";
-  const fullImageUrl = product.primaryImage
-    ? `${siteUrl.replace(/\/$/, "")}${product.primaryImage}`
-    : "";
-
   const message = [
     `¡Hola Nana.col! 👋 Me encantó este diseño y quiero asesoría personalizada:`,
     ``,
+    `🔖 *Ref:* ${getProductReference(product.id)}`,
     `👙 *Prenda:* ${product.name}`,
     product.colorName ? `🎨 *Color:* ${product.colorName}` : null,
     product.price ? `💰 *Precio:* ${product.price}` : null,
     ``,
-    `📸 *Foto de referencia:*`,
-    fullImageUrl,
-    ``,
     `¿Tienen disponibilidad de tallas y cómo puedo coordinar la entrega? ¡Muchas gracias!`,
+    ``,
+    `${SITE_URL}${getProductPagePath(product.id)}`,
   ]
     .filter((line) => line !== null)
     .join("\n");

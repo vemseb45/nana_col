@@ -6,7 +6,7 @@ export { WOMEN_PRODUCTS } from "./products.data";
 export { KIDS_PRODUCTS } from "./kids-products.data";
 
 /**
- * Catálogo completo unificado de productos Nana Home
+ * Catálogo completo unificado de productos Nana.col
  */
 export const ALL_PRODUCTS: ProductItem[] = [
   ...WOMEN_PRODUCTS,

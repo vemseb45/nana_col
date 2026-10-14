@@ -23,10 +23,10 @@ export default function ProductCard({ product, onOpenQuickView }: ProductCardPro
 
   const hasSecondaryImage = Boolean(product.hoverImage);
   const whatsappUrl = getWhatsAppProductUrl({
+    id: product.id,
     name: product.name,
     price: product.price,
     colorName: product.colorName,
-    primaryImage: product.primaryImage,
   });
 
   // Alternar vista táctil en dispositivos móviles

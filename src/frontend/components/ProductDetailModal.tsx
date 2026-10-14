@@ -53,10 +53,10 @@ export default function ProductDetailModal({ product, onClose }: ProductDetailMo
   const activeImage = selectedImageOverride || product.primaryImage;
   const hasTwoImages = Boolean(product.hoverImage);
   const whatsappUrl = getWhatsAppProductUrl({
+    id: product.id,
     name: product.name,
     price: product.price,
     colorName: product.colorName,
-    primaryImage: activeImage,
   });
 
   return (

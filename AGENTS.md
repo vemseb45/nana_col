@@ -60,6 +60,7 @@ nana_col/
 ├── public/
 │   ├── favicon.ico                   # Favicon oficial con el logo real de Nana.col
 │   ├── logo.png                      # Logo original de alta resolución
+│   ├── og/                           # Miniaturas Open Graph optimizadas (<100KB) para WhatsApp
 │   └── img/                          # Banco de imágenes locales
 │       ├── modelo_vestido_*.jpeg     # Fotografía en modelo (vista primaria)
 │       ├── vestido_*.jpeg            # Fotografía exclusiva de la prenda (vista secundaria)
@@ -72,6 +73,7 @@ nana_col/
 │   │   │   ├── products/route.ts     # REST API: GET /api/products
 │   │   │   ├── products/[id]/route.ts# REST API: GET /api/products/[id]
 │   │   │   └── graphql/route.ts      # GraphQL Endpoint: query { products, product, categories }
+│   │   ├── p/[id]/page.tsx           # Vista previa enriquecida y Open Graph card para WhatsApp
 │   │   ├── globals.css               # Configuración Tailwind v4 y animaciones
 │   │   ├── icon.png                  # Icono nativo App Router
 │   │   ├── layout.tsx                # Layout raíz con metadataBase, iconos y fuentes
@@ -126,8 +128,11 @@ nana_col/
    - **ESTÁ PROHIBIDO EL USO DE CORREO ELECTRÓNICO:** No se utiliza correo electrónico en la operación ni comunicación de la marca.
 6. **Ubicación de la Tienda Física:**
    - `Centro Comercial San Andresito Avenida 68 Local P1 Segundo Piso, Bogotá, Colombia`.
-7. **Mensaje de Asesoría en WhatsApp con Foto:**
-   - Al hacer clic en "Asesoría" o "Consultar", el mensaje generado automáticamente debe incluir el nombre de la prenda, precio en COP y la **URL de la foto de la prenda** para que WhatsApp genere la previsualización visual enriquecida en el chat.
+7. **Mensaje de Asesoría en WhatsApp con Previsualización Enriquecida (Rich Preview Card) y Referencia:**
+   - Para que WhatsApp despliegue la fotografía del vestido de forma idéntica a los anuncios de Instagram/Facebook, el mensaje utiliza la URL limpia del producto (`https://nana-col.vercel.app/p/[id]`) al final del texto.
+   - Cada producto cuenta con página dedicada `/p/[id]` configurada con etiquetas Open Graph (`og:image`, `og:title`, `og:description`, `twitter:card: summary_large_image`).
+   - Las imágenes de previsualización residen optimizadas en `public/og/*.jpg` con peso menor a 100 KB (WhatsApp descarta imágenes superiores a 300 KB).
+   - El mensaje incluye un código de referencia directo y legible (ej. `REF: NC-VESTIDO-AZUL` o `REF: NC-NINO-SPIDERMAN`), nombre de prenda, color y precio en COP. Se eliminan enlaces crudos o antiestéticos a archivos `/img/`.
 8. **Logotipo y Favicon Oficial:**
    - Uso estricto de `public/logo.png`, `public/favicon.ico` y `src/app/icon.png`. Prohibido el uso de logotipos genéricos o favicons por defecto de Next.js.
 9. **Diseño Responsive Proporcional en Celulares:**
