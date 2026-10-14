@@ -1,0 +1,77 @@
+'use client';
+
+import { useState } from 'react';
+import { ProductItem } from '@/types/product.types';
+import Navbar from './components/Navbar';
+import Hero from './components/Hero';
+import FeaturesBanner from './components/FeaturesBanner';
+import Categories from './components/Categories';
+import Collection from './components/Collection';
+import KidsCollection from './components/KidsCollection';
+import About from './components/About';
+import Newsletter from './components/Newsletter';
+import Footer from './components/Footer';
+import ProductDetailModal from '@/frontend/components/ProductDetailModal';
+import SearchModal from '@/frontend/components/SearchModal';
+import WhatsAppFloatingButton from '@/frontend/components/WhatsAppFloatingButton';
+import ThemeToggle from '@/frontend/components/ThemeToggle';
+
+/**
+ * LandingView Component
+ * Orquestador principal modular del frontend para Nana Home.
+ * Principio SOLID: Single Responsibility & Inversión de Control.
+ */
+export default function LandingView() {
+  const [selectedProduct, setSelectedProduct] = useState<ProductItem | null>(null);
+  const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
+
+  return (
+    <div className="min-h-screen bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark transition-colors duration-300 flex flex-col justify-between selection:bg-primary/20 selection:text-primary">
+      {/* Barra de Navegación con logo oficial /logo.png */}
+      <Navbar onSearchClick={() => setIsSearchOpen(true)} />
+
+      {/* Contenido Principal */}
+      <main className="flex-1">
+        {/* Sección Hero Tropical */}
+        <Hero />
+
+        {/* Pilares de Marca (Garantías UV 50+, Secado Rápido, Asesoría) */}
+        <FeaturesBanner />
+
+        {/* Categorías Principales */}
+        <Categories />
+
+        {/* Colección Mujer - Vestidos de Baño con Parejas Prenda / Modelo */}
+        <Collection onOpenQuickView={(prod) => setSelectedProduct(prod)} />
+
+        {/* Colección Infantil - Vestidos y Trajes de Baño Niños y Niñas */}
+        <KidsCollection onOpenQuickView={(prod) => setSelectedProduct(prod)} />
+
+        {/* Nuestra Esencia / Sostenibilidad */}
+        <About />
+
+        {/* Boletín de Novedades */}
+        <Newsletter />
+      </main>
+
+      {/* Pie de Página Oficial */}
+      <Footer />
+
+      {/* Modales de Experiencia Visual */}
+      <ProductDetailModal
+        product={selectedProduct}
+        onClose={() => setSelectedProduct(null)}
+      />
+
+      <SearchModal
+        isOpen={isSearchOpen}
+        onClose={() => setIsSearchOpen(false)}
+        onSelectProduct={(prod) => setSelectedProduct(prod)}
+      />
+
+      {/* Botones de Acción Global */}
+      <WhatsAppFloatingButton />
+      <ThemeToggle />
+    </div>
+  );
+}
