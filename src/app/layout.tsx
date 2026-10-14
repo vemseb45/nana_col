@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Nana.col - Colección Tropical & Kids",
-    description: "Vestidos de baño para mujer y trajes infantiles en Bogotá. San Andresito Av. 68.",
+    description: "Vestidos de baño para mujer, trajes infantiles y trajes familliares en Bogotá. San Andresito Av. 68.",
     images: ["/logo.png"],
   },
 };
