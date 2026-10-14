@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { ProductItem } from '@/types/product.types';
 import { getWhatsAppProductUrl } from '@/constants/brand.data';
+import InteractiveProductImage from './InteractiveProductImage';
 
 interface ProductDetailModalProps {
   product: ProductItem | null;
@@ -80,21 +81,13 @@ export default function ProductDetailModal({ product, onClose }: ProductDetailMo
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-8 p-4 sm:p-8">
           {/* Columna Izquierda: Galería de Fotos */}
           <div className="flex flex-col gap-3">
-            <div className="relative aspect-[3/4] w-full rounded-xl sm:rounded-2xl overflow-hidden bg-orange-50 shadow-inner">
-              <img
-                src={activeImage}
-                alt={product.name}
-                className="w-full h-full object-cover object-center transition-all duration-500"
-              />
-
-              {product.badge && (
-                <div className="absolute top-3 left-3">
-                  <span className={`${product.badgeColor || 'bg-primary text-white'} text-[10px] sm:text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-full shadow-md`}>
-                    {product.badge}
-                  </span>
-                </div>
-              )}
-            </div>
+            <InteractiveProductImage
+              key={activeImage}
+              src={activeImage}
+              alt={product.name}
+              badge={product.badge}
+              badgeColor={product.badgeColor}
+            />
 
             {/* Selector de vistas: Primero MODELO, luego SOLO VESTIDO */}
             {hasTwoImages && product.hoverImage && (
