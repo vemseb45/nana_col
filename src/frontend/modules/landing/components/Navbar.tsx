@@ -36,40 +36,43 @@ export default function Navbar({ onSearchClick }: NavbarProps) {
         }`}
     >
       <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16 sm:h-20">
-          {/* Botón Hamburguesa Móvil */}
-          <button
-            type="button"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label="Abrir menú de navegación"
-            className="md:hidden p-1.5 rounded-lg text-gray-700 hover:bg-orange-100/60 transition-colors"
-          >
-            <span className="material-icons-outlined text-2xl">
-              {mobileMenuOpen ? 'close' : 'menu'}
-            </span>
-          </button>
+        <div className="relative flex justify-between items-center h-16 sm:h-20">
+          {/* Lado Izquierdo: Botón Hamburguesa Móvil o Enlaces de Navegación Desktop */}
+          <div className="flex items-center">
+            {/* Botón Hamburguesa Móvil */}
+            <button
+              type="button"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label="Abrir menú de navegación"
+              className="md:hidden p-1.5 rounded-lg text-gray-700 hover:bg-orange-100/60 transition-colors"
+            >
+              <span className="material-icons-outlined text-2xl">
+                {mobileMenuOpen ? 'close' : 'menu'}
+              </span>
+            </button>
 
-          {/* Enlaces de Navegación Desktop */}
-          <div className="hidden md:flex items-center space-x-6 lg:space-x-8">
-            {NAV_LINKS.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                className="text-[11px] lg:text-xs uppercase tracking-widest font-semibold text-gray-700 hover:text-primary transition-colors"
-              >
-                {item.label}
-              </a>
-            ))}
+            {/* Enlaces de Navegación Desktop */}
+            <div className="hidden md:flex items-center space-x-5 lg:space-x-7">
+              {NAV_LINKS.map((item) => (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  className="text-[11px] lg:text-xs uppercase tracking-widest font-semibold text-gray-700 hover:text-primary transition-colors"
+                >
+                  {item.label}
+                </a>
+              ))}
+            </div>
           </div>
 
-          {/* Logo Central Oficial de Nana.col */}
-          <div className="flex-shrink-0 flex items-center justify-center">
+          {/* Logo Oficial de Nana.col - 100% Centrado Matemático */}
+          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center pointer-events-auto">
             <a
               href="#"
-              className="flex items-center gap-2 sm:gap-3 group focus:outline-none"
+              className="flex items-center gap-2 sm:gap-2.5 group focus:outline-none"
               title="Nana.col - Inicio"
             >
-              <div className="relative h-11 w-11 sm:h-14 sm:w-14 rounded-full overflow-hidden p-0.5 bg-gradient-to-tr from-primary to-orange-300 shadow-md group-hover:scale-105 transition-transform duration-300">
+              <div className="relative h-10 w-10 sm:h-12 sm:w-12 rounded-full overflow-hidden p-0.5 bg-gradient-to-tr from-primary to-orange-300 shadow-md group-hover:scale-105 transition-transform duration-300">
                 <img
                   src="/logo.png"
                   alt="Nana.col Logo Oficial"
@@ -82,8 +85,8 @@ export default function Navbar({ onSearchClick }: NavbarProps) {
             </a>
           </div>
 
-          {/* Acciones del Header (Derecha) */}
-          <div className="flex items-center space-x-2 sm:space-x-4">
+          {/* Lado Derecho: Acciones del Header */}
+          <div className="flex items-center space-x-2 sm:space-x-3">
             {/* Botón de búsqueda */}
             {onSearchClick && (
               <button

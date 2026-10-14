@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react';
 import { ProductItem } from '@/types/product.types';
 import { getWhatsAppProductUrl } from '@/constants/brand.data';
-import InteractiveProductImage from './InteractiveProductImage';
 
 interface ProductDetailModalProps {
   product: ProductItem | null;
@@ -79,15 +78,29 @@ export default function ProductDetailModal({ product, onClose }: ProductDetailMo
         </button>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-8 p-4 sm:p-8">
-          {/* Columna Izquierda: Galería de Fotos */}
+          {/* Columna Izquierda: Visualización Completa Inmediata */}
           <div className="flex flex-col gap-3">
-            <InteractiveProductImage
-              key={activeImage}
-              src={activeImage}
-              alt={product.name}
-              badge={product.badge}
-              badgeColor={product.badgeColor}
-            />
+            <div className="relative aspect-[3/4] sm:aspect-[4/5] w-full rounded-2xl overflow-hidden bg-orange-50/60 border border-orange-100/80 shadow-inner flex items-center justify-center p-2.5 sm:p-4">
+              <img
+                src={activeImage}
+                alt={product.name}
+                loading="eager"
+                decoding="async"
+                className="max-h-full max-w-full w-auto h-auto object-contain rounded-xl drop-shadow-xs transition-transform duration-300"
+              />
+
+              {product.badge && (
+                <div className="absolute top-3 left-3 z-10 pointer-events-none">
+                  <span
+                    className={`${
+                      product.badgeColor || 'bg-primary text-white'
+                    } text-[10px] sm:text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-full shadow-md`}
+                  >
+                    {product.badge}
+                  </span>
+                </div>
+              )}
+            </div>
 
             {/* Selector de vistas: Primero MODELO, luego SOLO VESTIDO */}
             {hasTwoImages && product.hoverImage && (

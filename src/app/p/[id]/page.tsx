@@ -10,7 +10,6 @@ import {
   getOgImagePath,
   getWhatsAppProductUrl,
 } from '@/constants/brand.data';
-import InteractiveProductImage from '@/frontend/components/InteractiveProductImage';
 
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -158,17 +157,29 @@ export default async function ProductDetailPage({ params }: PageProps) {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-10 p-5 sm:p-8 lg:p-10">
             {/* Columna Izquierda: Fotografías */}
             <div className="flex flex-col gap-4">
-              <div className="relative">
-                <InteractiveProductImage
+              <div className="relative aspect-[3/4] sm:aspect-[4/5] w-full rounded-2xl overflow-hidden bg-orange-50/60 border border-orange-100/80 shadow-inner flex items-center justify-center p-2.5 sm:p-4">
+                <img
                   src={product.primaryImage}
                   alt={`${product.name} en modelo - Nana.col`}
-                  badge={product.badge}
-                  badgeColor={product.badgeColor}
+                  loading="eager"
+                  decoding="async"
+                  className="max-h-full max-w-full w-auto h-auto object-contain rounded-xl drop-shadow-xs"
                 />
+
                 {/* Badge de Referencia */}
                 <span className="absolute top-3 left-3 z-20 bg-white/90 backdrop-blur-md text-gray-800 text-[11px] font-bold px-3 py-1 rounded-full shadow-sm border border-orange-100 pointer-events-none">
                   {refCode}
                 </span>
+
+                {product.badge && (
+                  <span
+                    className={`absolute top-3 right-3 z-20 text-white text-[11px] font-bold px-3 py-1 rounded-full shadow-sm ${
+                      product.badgeColor || 'bg-primary'
+                    }`}
+                  >
+                    {product.badge}
+                  </span>
+                )}
               </div>
 
               {/* Si tiene foto exclusiva de la prenda, mostrar miniatura / segunda vista */}

@@ -91,7 +91,6 @@ nana_col/
 │   │   └── products.data.ts          # Catálogo femenino con parejas modelo/prenda
 │   ├── frontend/
 │   │   ├── components/               # Componentes UI reutilizables y atómicos
-│   │   │   ├── InteractiveProductImage.tsx # Visor interactivo deslizable con arrastre táctil/mouse
 │   │   │   ├── ProductCard.tsx       # Tarjeta con alternancia modelo/vestido (Desktop y Celular)
 │   │   │   ├── ProductDetailModal.tsx# Modal de visualización rápida y guía de tallas
 │   │   │   ├── SearchModal.tsx       # Buscador interactivo por nombre, color o personaje
