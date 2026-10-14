@@ -21,8 +21,8 @@ export interface ProductItem {
   material: string;
   features: string[];
   sizes: string[];
-  primaryImage: string; // Prenda o imagen principal
-  hoverImage?: string | null; // Imagen en modelo (si aplica)
+  primaryImage: string; // Enfoque solicitado: Primero la MODELO
+  hoverImage?: string | null; // Segundo enfoque: Solo el VESTIDO (si aplica)
   badge?: string | null;
   badgeColor?: string;
   isNew?: boolean;
@@ -45,9 +45,8 @@ export interface BrandInfo {
   tagline: string;
   description: string;
   phone: string;
-  whatsappNumber: string; // formato internacional e.g. "573001234567"
+  whatsappNumber: string;
   whatsappDisplay: string;
-  email: string;
   address: string;
   socials: {
     instagram: string;

@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import { ProductItem } from '@/types/product.types';
 import { getWhatsAppProductUrl } from '@/constants/brand.data';
 
@@ -11,78 +12,102 @@ interface ProductCardProps {
 /**
  * ProductCard Component
  * Principio SOLID: Single Responsibility Principle (SRP)
- * Se encarga exclusivamente de renderizar la tarjeta del producto,
- * el efecto hover de transición prenda/modelo y la interacción de consulta.
+ * - Muestra PRIMERO la fotografía de la MODELO.
+ * - Al pasar el mouse en PC o dar toque en celular, cambia a la foto de SOLO EL VESTIDO.
+ * - En celulares incluye un selector táctil intuitivo [Modelo | Vestido].
+ * - Enlace a WhatsApp con foto de referencia y precios en COP.
  */
 export default function ProductCard({ product, onOpenQuickView }: ProductCardProps) {
+  // Estado para alternar entre vista de modelo y solo vestido en móviles
+  const [showDressOnMobile, setShowDressOnMobile] = useState<boolean>(false);
+
   const hasSecondaryImage = Boolean(product.hoverImage);
-  const whatsappUrl = getWhatsAppProductUrl(product.name, product.price);
+  const whatsappUrl = getWhatsAppProductUrl({
+    name: product.name,
+    price: product.price,
+    colorName: product.colorName,
+    primaryImage: product.primaryImage,
+  });
+
+  // Alternar vista táctil en dispositivos móviles
+  const handleTouchToggle = (e: React.MouseEvent) => {
+    if (hasSecondaryImage) {
+      e.stopPropagation();
+      setShowDressOnMobile((prev) => !prev);
+    }
+  };
 
   return (
-    <article className="group relative flex flex-col h-full bg-white dark:bg-surface-dark rounded-2xl overflow-hidden border border-orange-100/60 dark:border-slate-800 shadow-sm hover:shadow-xl transition-all duration-300">
-      {/* Contenedor de Imagen con Efecto Hover */}
+    <article className="group relative flex flex-col h-full bg-white rounded-xl sm:rounded-2xl overflow-hidden border border-orange-100/70 shadow-sm hover:shadow-xl transition-all duration-300">
+      {/* Contenedor de Imagen con Efecto Hover e Interacción Móvil */}
       <div 
-        onClick={() => onOpenQuickView(product)}
-        className="relative aspect-[3/4] w-full overflow-hidden bg-orange-50/50 dark:bg-slate-800/60 cursor-pointer"
+        onClick={handleTouchToggle}
+        className="relative aspect-[3/4] w-full overflow-hidden bg-orange-50/50 cursor-pointer select-none"
       >
-        {/* Imagen Principal (Prenda de estudio o Modelo) */}
+        {/* Imagen Principal: MODELO puesta */}
         <img
           src={product.primaryImage}
-          alt={`${product.name} - Nana Home`}
+          alt={`${product.name} en modelo - Nana Home`}
           loading="lazy"
           className={`h-full w-full object-cover object-center transition-all duration-700 ${
-            hasSecondaryImage ? 'group-hover:scale-105' : 'group-hover:scale-110'
-          }`}
+            showDressOnMobile && hasSecondaryImage ? 'opacity-0' : 'opacity-100'
+          } ${hasSecondaryImage ? 'group-hover:scale-105' : 'group-hover:scale-110'}`}
         />
 
-        {/* Imagen Secundaria en Hover (Modelo puesto) si existe */}
+        {/* Imagen Secundaria: SOLO EL VESTIDO (En hover en PC o activo en Móvil) */}
         {hasSecondaryImage && product.hoverImage && (
           <img
             src={product.hoverImage}
-            alt={`${product.name} en modelo - Nana Home`}
+            alt={`${product.name} (solo prenda) - Nana Home`}
             loading="lazy"
-            className="absolute inset-0 h-full w-full object-cover object-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out"
+            className={`absolute inset-0 h-full w-full object-cover object-center transition-opacity duration-500 ease-in-out ${
+              showDressOnMobile
+                ? 'opacity-100'
+                : 'opacity-0 md:group-hover:opacity-100'
+            }`}
           />
         )}
 
-        {/* Overlay suave en hover */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+        {/* Overlay suave en desktop */}
+        <div className="hidden md:block absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
 
         {/* Badge de estado en esquina superior izquierda */}
         {product.badge && (
-          <div className="absolute top-3 left-3 z-10">
+          <div className="absolute top-2 left-2 sm:top-3 sm:left-3 z-10 pointer-events-none">
             <span
               className={`${
                 product.badgeColor || 'bg-primary text-white'
-              } text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full shadow-md backdrop-blur-md`}
+              } text-[9px] sm:text-[11px] font-bold uppercase tracking-wider px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full shadow-md backdrop-blur-md`}
             >
               {product.badge}
             </span>
           </div>
         )}
 
-        {/* Indicador de doble vista (Prenda y Modelo) */}
+        {/* Botón selector táctil para Móvil y Desktop */}
         {hasSecondaryImage && (
-          <div className="absolute top-3 right-3 z-10 opacity-80 group-hover:opacity-100 transition-opacity">
-            <span 
-              className="flex items-center gap-1 bg-black/60 backdrop-blur-md text-white text-[10px] font-medium px-2 py-0.5 rounded-full"
-              title="Pasa el mouse para ver puesto en modelo"
+          <div className="absolute top-2 right-2 sm:top-3 sm:right-3 z-10">
+            <button
+              type="button"
+              onClick={handleTouchToggle}
+              title="Toca para cambiar entre modelo y solo vestido"
+              className="flex items-center gap-1 bg-black/65 active:bg-primary backdrop-blur-md text-white text-[9px] sm:text-[10px] font-medium px-2 py-0.5 rounded-full shadow transition-colors"
             >
               <span className="material-icons-outlined text-xs">sync</span>
-              <span className="hidden sm:inline">Prenda / Modelo</span>
-            </span>
+              <span>{showDressOnMobile ? 'Vestido' : 'Modelo'}</span>
+            </button>
           </div>
         )}
 
-        {/* Botón de Acción en Hover: Ver Detalle */}
-        <div className="absolute bottom-4 inset-x-4 z-10 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 flex flex-col gap-2">
+        {/* Botón de Acción en Hover para Desktop */}
+        <div className="hidden md:flex absolute bottom-3 inset-x-3 z-10 translate-y-3 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 flex-col gap-2">
           <button
             type="button"
             onClick={(e) => {
               e.stopPropagation();
               onOpenQuickView(product);
             }}
-            className="w-full py-2.5 px-4 bg-white/95 dark:bg-slate-900/95 backdrop-blur text-gray-900 dark:text-white rounded-xl font-medium text-xs uppercase tracking-wider shadow-lg hover:bg-primary hover:text-white dark:hover:bg-primary dark:hover:text-white transition-colors flex items-center justify-center gap-1.5"
+            className="w-full py-2 px-3 bg-white/95 backdrop-blur text-gray-900 rounded-xl font-medium text-[11px] uppercase tracking-wider shadow-lg hover:bg-primary hover:text-white transition-colors flex items-center justify-center gap-1.5"
           >
             <span className="material-icons-outlined text-sm">visibility</span>
             Ver Detalle Completo
@@ -91,14 +116,14 @@ export default function ProductCard({ product, onOpenQuickView }: ProductCardPro
       </div>
 
       {/* Información del Producto */}
-      <div className="p-4 flex flex-col flex-1 justify-between">
+      <div className="p-2.5 sm:p-4 flex flex-col flex-1 justify-between gap-2">
         <div>
-          {/* Categoría o Tema */}
-          <div className="flex items-center justify-between text-xs text-primary font-semibold uppercase tracking-wider mb-1">
-            <span>{product.colorName}</span>
-            {product.theme && (
-              <span className="text-gray-400 dark:text-gray-500 lowercase">
-                #{product.theme}
+          {/* Color y Tema */}
+          <div className="flex items-center justify-between text-[10px] sm:text-xs text-primary font-bold uppercase tracking-wider mb-0.5">
+            <span className="truncate">{product.colorName}</span>
+            {hasSecondaryImage && (
+              <span className="text-[9px] text-gray-400 font-normal md:hidden">
+                (Toca para alternar)
               </span>
             )}
           </div>
@@ -106,43 +131,55 @@ export default function ProductCard({ product, onOpenQuickView }: ProductCardPro
           {/* Título */}
           <h3 
             onClick={() => onOpenQuickView(product)}
-            className="font-display text-lg text-gray-900 dark:text-white font-medium hover:text-primary transition-colors cursor-pointer line-clamp-1"
+            className="font-display text-xs sm:text-sm md:text-base text-gray-900 font-bold hover:text-primary transition-colors cursor-pointer line-clamp-1"
           >
             {product.name}
           </h3>
 
-          {/* Breve descripción o material */}
-          <p className="mt-1 text-xs text-gray-500 dark:text-gray-400 line-clamp-1">
+          {/* Material resumido */}
+          <p className="mt-0.5 text-[10px] sm:text-xs text-gray-500 line-clamp-1">
             {product.material}
           </p>
         </div>
 
-        {/* Precio y Botón de Consulta por WhatsApp */}
-        <div className="mt-4 pt-3 border-t border-gray-100 dark:border-slate-800/80 flex items-center justify-between">
+        {/* Precios en COP y Acciones */}
+        <div className="pt-2 border-t border-gray-100 flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 sm:gap-2">
           <div>
-            <span className="text-xs text-gray-400 block">Precio Ref.</span>
-            <div className="flex items-baseline gap-2">
-              <span className="text-base font-bold text-gray-900 dark:text-white">
+            <div className="flex items-baseline gap-1.5">
+              <span className="text-xs sm:text-sm font-bold text-gray-900 font-display">
                 {product.price}
               </span>
               {product.originalPrice && (
-                <span className="text-xs text-gray-400 line-through">
+                <span className="text-[10px] sm:text-xs text-gray-400 line-through">
                   {product.originalPrice}
                 </span>
               )}
             </div>
           </div>
 
-          <a
-            href={whatsappUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            title="Consultar disponibilidad por WhatsApp"
-            className="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 hover:bg-emerald-600 hover:text-white dark:hover:bg-emerald-600 dark:hover:text-white transition-all text-xs font-semibold"
-          >
-            <span className="material-icons-outlined text-sm">chat</span>
-            <span>Consultar</span>
-          </a>
+          <div className="flex items-center gap-1">
+            {/* Botón Ver Detalle (Móvil) */}
+            <button
+              type="button"
+              onClick={() => onOpenQuickView(product)}
+              aria-label="Ver detalle"
+              className="md:hidden p-1.5 rounded-lg bg-orange-50 text-gray-700 text-xs"
+            >
+              <span className="material-icons-outlined text-sm block">visibility</span>
+            </button>
+
+            {/* Botón WhatsApp con enlace a foto */}
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              title="Quiero asesoría por WhatsApp con esta foto"
+              className="flex-1 sm:flex-initial flex items-center justify-center gap-1 px-2.5 py-1.5 rounded-lg bg-emerald-50 text-emerald-700 hover:bg-emerald-600 hover:text-white transition-all text-[11px] sm:text-xs font-bold"
+            >
+              <span className="material-icons-outlined text-sm">chat</span>
+              <span>Asesoría</span>
+            </a>
+          </div>
         </div>
       </div>
     </article>

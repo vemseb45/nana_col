@@ -1,32 +1,63 @@
 import { BrandInfo } from "@/types/product.types";
 
+/**
+ * Información oficial de marca - Nana Home
+ * Principio DRY: Centraliza datos de contacto y enlaces a WhatsApp
+ */
 export const BRAND_DATA: BrandInfo = {
   name: "Nana Home",
   tagline: "Vestidos de Baño & Colección Tropical",
-  description: "Moda playera y vestidos de baño exclusivos para mujer y niños. Diseños únicos creados con amor por el océano, telas con protección UV 50+ y confección artesanal.",
-  phone: "+57 (300) 123-4567",
-  whatsappNumber: "573001234567",
-  whatsappDisplay: "+57 300 123 4567",
-  email: "hola@nanahome.com",
-  address: "Av. del Sol 45, Edificio Paraíso Tropical, Cartagena / Medellín",
+  description:
+    "Moda playera y vestidos de baño exclusivos para mujer y niños. Diseños únicos creados con amor por el océano, telas con protección UV 50+ y confección artesanal.",
+  phone: "+57 315 8684467",
+  whatsappNumber: "573158684467",
+  whatsappDisplay: "+57 315 8684467",
+  address: "Centro Comercial San Andresito Avenida 68 Local P1 Segundo Piso, Bogotá, Colombia",
   socials: {
-    instagram: "https://instagram.com/nana.col",
-    facebook: "https://facebook.com/nana.col",
-    tiktok: "https://tiktok.com/@nana.col",
+    instagram: "https://instagram.com/nanahome",
+    facebook: "https://facebook.com/nanahome",
+    tiktok: "https://tiktok.com/@nanahome",
   },
 };
 
 /**
- * Función utilitaria para generar enlace directo a WhatsApp con mensaje personalizado (DRY)
+ * Generador de enlace directo a WhatsApp incluyendo la referencia e imagen del vestido (DRY)
  */
-export function getWhatsAppProductUrl(productName: string, productPrice?: string): string {
-  const message = `¡Hola Nana Home! 👋 Me encantó el modelo *${productName}*${
-    productPrice ? ` (${productPrice})` : ""
-  }. ¿Tienen tallas disponibles y cómo puedo coordinar la compra?`;
+export function getWhatsAppProductUrl(product: {
+  name: string;
+  price?: string;
+  colorName?: string;
+  primaryImage?: string;
+}): string {
+  // Usar dominio base canónico para consistencia estricta entre SSR y cliente (evita mismatch de hidratación)
+  // Además, WhatsApp requiere un dominio web público accesible para generar la tarjeta de vista previa enriquecida
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://nanahome.com";
+  const fullImageUrl = product.primaryImage
+    ? `${siteUrl.replace(/\/$/, "")}${product.primaryImage}`
+    : "";
+
+  const message = [
+    `¡Hola Nana Home! 👋 Me encantó este diseño y quiero asesoría personalizada:`,
+    ``,
+    `👙 *Prenda:* ${product.name}`,
+    product.colorName ? `🎨 *Color:* ${product.colorName}` : null,
+    product.price ? `💰 *Precio:* ${product.price}` : null,
+    ``,
+    `📸 *Foto de referencia:*`,
+    fullImageUrl,
+    ``,
+    `¿Tienen disponibilidad de tallas y cómo puedo coordinar la entrega? ¡Muchas gracias!`,
+  ]
+    .filter((line) => line !== null)
+    .join("\n");
+
   return `https://wa.me/${BRAND_DATA.whatsappNumber}?text=${encodeURIComponent(message)}`;
 }
 
+/**
+ * Enlace directo de WhatsApp para asesoría general
+ */
 export function getWhatsAppGeneralUrl(): string {
-  const message = `¡Hola Nana Home! 👋 Quisiera recibir asesoría personalizada sobre sus vestidos de baño y colección actual.`;
+  const message = `¡Hola Nana Home! 👋 Me gustaría recibir asesoría personalizada sobre sus vestidos de baño para mujer y trajes infantiles.`;
   return `https://wa.me/${BRAND_DATA.whatsappNumber}?text=${encodeURIComponent(message)}`;
 }

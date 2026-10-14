@@ -2,8 +2,9 @@ import { ProductItem } from "@/types/product.types";
 
 /**
  * Catálogo de Vestidos de Baño para Mujer - Nana Home
- * Cumple con principio DRY: Centraliza datos de productos femeninos
- * Manejo de parejas: Prenda (vestido_*.jpeg) y Modelo (modelo_vestido_*.jpeg)
+ * - Precios en Pesos Colombianos (COP)
+ * - Inversión de visualización: Primero se ve la MODELO (primaryImage),
+ *   y en hover/toque se visualiza SOLO EL VESTIDO (hoverImage).
  */
 export const WOMEN_PRODUCTS: ProductItem[] = [
   {
@@ -13,8 +14,8 @@ export const WOMEN_PRODUCTS: ProductItem[] = [
     category: "mujer",
     subcategory: "vestido_bano",
     colorName: "Rojo Pasión",
-    price: "$115.00",
-    originalPrice: "$135.00",
+    price: "$145.000 COP",
+    originalPrice: "$175.000 COP",
     description: "Enterizo estilizado de corte vanguardista con soporte interno y escote sofisticado. Diseñado para moldear la silueta con total comodidad y elegancia bajo el sol.",
     material: "Lycra colombiana pesada con tecnología de secado rápido y protección solar UV 50+.",
     features: [
@@ -24,8 +25,10 @@ export const WOMEN_PRODUCTS: ProductItem[] = [
       "Doble forro suave al tacto"
     ],
     sizes: ["XS", "S", "M", "L"],
-    primaryImage: "/img/vestido_rojo.jpeg",
-    hoverImage: "/img/modelo_vestido_rojo.jpeg",
+    // Primero la MODELO
+    primaryImage: "/img/modelo_vestido_rojo.jpeg",
+    // Al pasar el mouse / toque: Solo el VESTIDO
+    hoverImage: "/img/vestido_rojo.jpeg",
     badge: "Bestseller",
     badgeColor: "bg-primary text-white",
     isNew: false,
@@ -38,7 +41,7 @@ export const WOMEN_PRODUCTS: ProductItem[] = [
     category: "mujer",
     subcategory: "vestido_bano",
     colorName: "Azul Caribe",
-    price: "$120.00",
+    price: "$150.000 COP",
     originalPrice: null,
     description: "Inspirado en la inmensidad del mar caribeño. Confeccionado con tejido texturizado que proporciona un ajuste firme y una sensación de frescura inigualable.",
     material: "Poliamida reciclada de alta elasticidad con tacto ultra sedoso.",
@@ -49,8 +52,10 @@ export const WOMEN_PRODUCTS: ProductItem[] = [
       "Protección contra rayos UV"
     ],
     sizes: ["S", "M", "L", "XL"],
-    primaryImage: "/img/vestido_azul.jpeg",
-    hoverImage: "/img/modelo_vestido_azul.jpeg",
+    // Primero la MODELO
+    primaryImage: "/img/modelo_vestido_azul.jpeg",
+    // Al pasar el mouse / toque: Solo el VESTIDO
+    hoverImage: "/img/vestido_azul.jpeg",
     badge: "Nuevo",
     badgeColor: "bg-emerald-600 text-white",
     isNew: true,
@@ -63,7 +68,7 @@ export const WOMEN_PRODUCTS: ProductItem[] = [
     category: "mujer",
     subcategory: "vestido_bano",
     colorName: "Blanco Perla",
-    price: "$125.00",
+    price: "$160.000 COP",
     originalPrice: null,
     description: "La cumbre de la sofisticación costera. Su tono blanco radiante cuenta con doble forro ultra opaco que garantiza cero transparencias dentro o fuera del agua.",
     material: "Microfibra premium con tecnología anti-manchas por bloqueador solar.",
@@ -74,8 +79,10 @@ export const WOMEN_PRODUCTS: ProductItem[] = [
       "Secado ultrarrápido"
     ],
     sizes: ["XS", "S", "M", "L"],
-    primaryImage: "/img/vestido_blanco.jpeg",
-    hoverImage: "/img/modelo_vestido_blanco.jpeg",
+    // Primero la MODELO
+    primaryImage: "/img/modelo_vestido_blanco.jpeg",
+    // Al pasar el mouse / toque: Solo el VESTIDO
+    hoverImage: "/img/vestido_blanco.jpeg",
     badge: "Exclusivo",
     badgeColor: "bg-amber-600 text-white",
     isNew: false,
@@ -88,8 +95,8 @@ export const WOMEN_PRODUCTS: ProductItem[] = [
     category: "mujer",
     subcategory: "vestido_bano",
     colorName: "Estampado Botánico",
-    price: "$130.00",
-    originalPrice: "$150.00",
+    price: "$155.000 COP",
+    originalPrice: "$180.000 COP",
     description: "Estampado botánico exclusivo de Nana Home que rinde tributo a la flora tropical costera. Colores vivos que se mantienen intactos con el paso del tiempo.",
     material: "Poliéster ecológico texturizado y elastano de grado marino.",
     features: [
@@ -99,8 +106,10 @@ export const WOMEN_PRODUCTS: ProductItem[] = [
       "Alta cobertura solar"
     ],
     sizes: ["S", "M", "L"],
-    primaryImage: "/img/vestido_flores.jpeg",
-    hoverImage: "/img/modelo_vestido_flores.jpeg",
+    // Primero la MODELO
+    primaryImage: "/img/modelo_vestido_flores.jpeg",
+    // Al pasar el mouse / toque: Solo el VESTIDO
+    hoverImage: "/img/vestido_flores.jpeg",
     badge: "-15% OFF",
     badgeColor: "bg-rose-500 text-white",
     isNew: false,
@@ -113,7 +122,7 @@ export const WOMEN_PRODUCTS: ProductItem[] = [
     category: "mujer",
     subcategory: "vestido_bano",
     colorName: "Verde Petróleo",
-    price: "$118.00",
+    price: "$148.000 COP",
     originalPrice: null,
     description: "Tono verde esmeralda profundo que resalta todos los tonos de piel bronceada. Un básico elegante imprescindible para tus días en yate o resort.",
     material: "Tejido microacanalado con memoria de forma y compresión suave.",
@@ -124,8 +133,10 @@ export const WOMEN_PRODUCTS: ProductItem[] = [
       "Confección 100% artesanal"
     ],
     sizes: ["S", "M", "L", "XL"],
-    primaryImage: "/img/vestido_petroleo.jpeg",
-    hoverImage: "/img/modelo_vestido_petroleo.jpeg",
+    // Primero la MODELO
+    primaryImage: "/img/modelo_vestido_petroleo.jpeg",
+    // Al pasar el mouse / toque: Solo el VESTIDO
+    hoverImage: "/img/vestido_petroleo.jpeg",
     badge: "Edición Limitada",
     badgeColor: "bg-teal-700 text-white",
     isNew: false,
@@ -138,7 +149,7 @@ export const WOMEN_PRODUCTS: ProductItem[] = [
     category: "mujer",
     subcategory: "vestido_bano",
     colorName: "Rosa Coral",
-    price: "$110.00",
+    price: "$140.000 COP",
     originalPrice: null,
     description: "Cálido y delicado como la arena al atardecer. Diseñado con silueta minimalista que ofrece máxima libertad de movimiento y comodidad total.",
     material: "Lycra suave de secado exprés y tacto terso.",
@@ -149,8 +160,10 @@ export const WOMEN_PRODUCTS: ProductItem[] = [
       "Protección solar UPF 50+"
     ],
     sizes: ["XS", "S", "M", "L"],
-    primaryImage: "/img/vestido_rosado.jpeg",
-    hoverImage: "/img/modelo_vestido_rosado.jpeg",
+    // Primero la MODELO
+    primaryImage: "/img/modelo_vestido_rosado.jpeg",
+    // Al pasar el mouse / toque: Solo el VESTIDO
+    hoverImage: "/img/vestido_rosado.jpeg",
     badge: "Tendencia",
     badgeColor: "bg-pink-600 text-white",
     isNew: true,
@@ -163,7 +176,7 @@ export const WOMEN_PRODUCTS: ProductItem[] = [
     category: "mujer",
     subcategory: "vestido_bano",
     colorName: "Azul Marino",
-    price: "$115.00",
+    price: "$145.000 COP",
     originalPrice: null,
     description: "La máxima expresión del estilo náutico clásico. Silueta envolvente que brinda un realce natural del busto y estiliza la cintura a la perfección.",
     material: "Lycra premium mate de compresión inteligente.",
@@ -175,7 +188,7 @@ export const WOMEN_PRODUCTS: ProductItem[] = [
     ],
     sizes: ["S", "M", "L"],
     primaryImage: "/img/modelo_vestido_azulmarino.jpeg",
-    hoverImage: null, // Foto de modelo exclusiva
+    hoverImage: null, // Solo cuenta con modelo
     badge: "Atemporal",
     badgeColor: "bg-slate-700 text-white",
     isNew: false,
@@ -188,7 +201,7 @@ export const WOMEN_PRODUCTS: ProductItem[] = [
     category: "mujer",
     subcategory: "vestido_bano",
     colorName: "Negro Ébano",
-    price: "$120.00",
+    price: "$150.000 COP",
     originalPrice: null,
     description: "El infaltable traje de baño negro que define la elegancia costera. Corte estilizador con copas moldeadas y escote limpio que nunca pasa de moda.",
     material: "Tejido escultor de alta tecnología con acabado mate sedoso.",
@@ -200,7 +213,7 @@ export const WOMEN_PRODUCTS: ProductItem[] = [
     ],
     sizes: ["XS", "S", "M", "L", "XL"],
     primaryImage: "/img/modelo_vestido_negro.jpeg",
-    hoverImage: null, // Foto de modelo exclusiva
+    hoverImage: null, // Solo cuenta con modelo
     badge: "Elegance",
     badgeColor: "bg-zinc-900 text-white",
     isNew: false,

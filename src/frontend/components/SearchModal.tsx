@@ -54,11 +54,11 @@ export default function SearchModal({ isOpen, onClose, onSelectProduct }: Search
       onClick={handleClose}
     >
       <div
-        className="w-full max-w-2xl bg-white dark:bg-surface-dark rounded-3xl shadow-2xl border border-orange-100 dark:border-slate-800 overflow-hidden"
+        className="w-full max-w-2xl bg-white rounded-3xl shadow-2xl border border-orange-100 overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Barra de Entrada */}
-        <div className="p-4 sm:p-6 border-b border-gray-100 dark:border-slate-800 flex items-center gap-3">
+        <div className="p-4 sm:p-6 border-b border-gray-100 flex items-center gap-3">
           <span className="material-icons-outlined text-gray-400 text-2xl">search</span>
           <input
             type="text"
@@ -66,11 +66,11 @@ export default function SearchModal({ isOpen, onClose, onSelectProduct }: Search
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             placeholder="Buscar por nombre, color o personaje (ej: Spiderman, Rojo, Batman, Flores)..."
-            className="flex-1 bg-transparent border-none text-base sm:text-lg text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none"
+            className="flex-1 bg-transparent border-none text-base sm:text-lg text-gray-900 placeholder-gray-400 focus:outline-none"
           />
           <button
             onClick={handleClose}
-            className="p-1 rounded-full text-gray-400 hover:text-gray-700 dark:hover:text-white transition-colors"
+            className="p-1 rounded-full text-gray-400 hover:text-gray-700 transition-colors"
           >
             <span className="material-icons-outlined text-xl">close</span>
           </button>
@@ -89,7 +89,7 @@ export default function SearchModal({ isOpen, onClose, onSelectProduct }: Search
                     key={chip}
                     type="button"
                     onClick={() => setSearchTerm(chip)}
-                    className="px-3 py-1.5 rounded-full bg-orange-50 dark:bg-slate-800 text-xs font-medium text-gray-700 dark:text-gray-300 hover:bg-primary hover:text-white transition-colors"
+                    className="px-3 py-1.5 rounded-full bg-orange-50 text-xs font-medium text-gray-700 hover:bg-primary hover:text-white transition-colors"
                   >
                     {chip}
                   </button>
@@ -98,10 +98,10 @@ export default function SearchModal({ isOpen, onClose, onSelectProduct }: Search
             </div>
           ) : searchResults.length === 0 ? (
             <div className="text-center py-8">
-              <span className="material-icons-outlined text-4xl text-gray-300 dark:text-gray-600 mb-2">
+              <span className="material-icons-outlined text-4xl text-gray-300 mb-2">
                 search_off
               </span>
-              <p className="text-sm font-medium text-gray-700 dark:text-gray-300">
+              <p className="text-sm font-medium text-gray-700">
                 No encontramos productos con &ldquo;{searchTerm}&rdquo;
               </p>
               <p className="text-xs text-gray-400 mt-1">
@@ -120,7 +120,7 @@ export default function SearchModal({ isOpen, onClose, onSelectProduct }: Search
                     handleClose();
                     onSelectProduct(product);
                   }}
-                  className="flex items-center gap-4 p-2.5 rounded-2xl hover:bg-orange-50/80 dark:hover:bg-slate-800/80 transition-all cursor-pointer group"
+                  className="flex items-center gap-4 p-2.5 rounded-2xl hover:bg-orange-50/80 transition-all cursor-pointer group"
                 >
                   <img
                     src={product.primaryImage}
@@ -128,10 +128,10 @@ export default function SearchModal({ isOpen, onClose, onSelectProduct }: Search
                     className="h-16 w-14 object-cover rounded-xl bg-orange-100 flex-shrink-0"
                   />
                   <div className="flex-1 min-w-0">
-                    <h4 className="text-sm font-bold text-gray-900 dark:text-white group-hover:text-primary transition-colors truncate">
+                    <h4 className="text-sm font-bold text-gray-900 group-hover:text-primary transition-colors truncate">
                       {product.name}
                     </h4>
-                    <p className="text-xs text-gray-500 dark:text-gray-400">
+                    <p className="text-xs text-gray-500">
                       {product.colorName} • {product.category === 'ninos' ? 'Línea Infantil' : 'Colección Mujer'}
                     </p>
                   </div>

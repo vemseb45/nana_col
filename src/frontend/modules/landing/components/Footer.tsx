@@ -2,32 +2,35 @@ import { BRAND_DATA, getWhatsAppGeneralUrl } from "@/constants/brand.data";
 
 /**
  * Footer Component
- * Pie de página oficial con el logo real /logo.png, enlaces de navegación,
- * información de contacto y canales de atención por WhatsApp.
+ * Pie de página oficial:
+ * - Logo real /logo.png
+ * - Dirección física oficial: San Andresito Av. 68 Local P1 Segundo Piso
+ * - Teléfono / WhatsApp oficial: +57 315 8684467
+ * - Sin correos electrónicos (no se usan en la operación)
  */
 export default function Footer() {
   const whatsappUrl = getWhatsAppGeneralUrl();
 
   return (
-    <footer id="contacto" className="bg-white dark:bg-background-dark border-t border-gray-100 dark:border-slate-800 pt-16 pb-12">
+    <footer id="contacto" className="bg-white border-t border-gray-100 pt-10 sm:pt-16 pb-8 sm:pb-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12 mb-10 sm:mb-16">
           {/* Columna 1: Marca y Logo Oficial */}
           <div>
-            <div className="flex items-center gap-3 mb-6">
-              <div className="h-12 w-12 rounded-full overflow-hidden p-0.5 bg-gradient-to-tr from-primary to-orange-300 shadow-sm flex-shrink-0">
+            <div className="flex items-center gap-3 mb-4 sm:mb-6">
+              <div className="h-10 w-10 sm:h-12 sm:w-12 rounded-full overflow-hidden p-0.5 bg-gradient-to-tr from-primary to-orange-300 shadow-sm flex-shrink-0">
                 <img
                   src="/logo.png"
-                  alt="Nana Home Logo"
+                  alt="Nana Home Logo Oficial"
                   className="h-full w-full object-cover rounded-full bg-white"
                 />
               </div>
-              <span className="font-display text-2xl font-bold text-gray-900 dark:text-white">
+              <span className="font-display text-xl sm:text-2xl font-bold text-gray-900">
                 Nana <span className="text-primary italic font-normal">Home</span>
               </span>
             </div>
-            <p className="text-gray-500 dark:text-gray-400 text-xs sm:text-sm leading-relaxed mb-6">
-              Moda tropical premium para espíritus libres. Diseñado con amor por el océano, confección ética y protección solar de alta gama.
+            <p className="text-gray-500 text-xs sm:text-sm leading-relaxed mb-4 sm:mb-6">
+              Moda tropical y vestidos de baño exclusivos para mujer y niños. Confección artesanal colombiana y protección solar certificada.
             </p>
             <div className="flex space-x-3">
               <a
@@ -35,37 +38,37 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram de Nana Home"
-                className="h-9 w-9 rounded-full bg-orange-50 dark:bg-slate-800 text-gray-600 dark:text-gray-300 hover:bg-primary hover:text-white transition-all flex items-center justify-center text-sm shadow-sm"
+                className="h-8 w-8 sm:h-9 sm:w-9 rounded-full bg-orange-50 text-gray-600 hover:bg-primary hover:text-white transition-all flex items-center justify-center text-sm shadow-sm"
               >
-                <span className="material-icons-outlined text-lg">photo_camera</span>
+                <span className="material-icons-outlined text-base sm:text-lg">photo_camera</span>
               </a>
               <a
                 href={BRAND_DATA.socials.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Facebook de Nana Home"
-                className="h-9 w-9 rounded-full bg-orange-50 dark:bg-slate-800 text-gray-600 dark:text-gray-300 hover:bg-primary hover:text-white transition-all flex items-center justify-center text-sm shadow-sm"
+                className="h-8 w-8 sm:h-9 sm:w-9 rounded-full bg-orange-50 text-gray-600 hover:bg-primary hover:text-white transition-all flex items-center justify-center text-sm shadow-sm"
               >
-                <span className="material-icons-outlined text-lg">facebook</span>
+                <span className="material-icons-outlined text-base sm:text-lg">facebook</span>
               </a>
               <a
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="WhatsApp de Nana Home"
-                className="h-9 w-9 rounded-full bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-300 hover:bg-emerald-600 hover:text-white transition-all flex items-center justify-center text-sm shadow-sm"
+                className="h-8 w-8 sm:h-9 sm:w-9 rounded-full bg-emerald-50 text-emerald-600 hover:bg-emerald-600 hover:text-white transition-all flex items-center justify-center text-sm shadow-sm"
               >
-                <span className="material-icons-outlined text-lg">chat</span>
+                <span className="material-icons-outlined text-base sm:text-lg">chat</span>
               </a>
             </div>
           </div>
 
           {/* Columna 2: Colecciones */}
           <div>
-            <h4 className="font-bold text-gray-900 dark:text-white uppercase tracking-wider text-xs mb-6">
+            <h4 className="font-bold text-gray-900 uppercase tracking-wider text-[11px] sm:text-xs mb-3 sm:mb-6">
               Colecciones
             </h4>
-            <ul className="space-y-3 text-xs sm:text-sm text-gray-500 dark:text-gray-400">
+            <ul className="space-y-2.5 sm:space-y-3 text-xs sm:text-sm text-gray-500">
               <li>
                 <a href="#collection-mujer" className="hover:text-primary transition-colors">
                   Vestidos de Baño Mujer
@@ -86,29 +89,19 @@ export default function Footer() {
                   Categorías Destacadas
                 </a>
               </li>
-              <li>
-                <a href="#about" className="hover:text-primary transition-colors">
-                  Ediciones Limitadas
-                </a>
-              </li>
             </ul>
           </div>
 
           {/* Columna 3: Información y Guías */}
           <div>
-            <h4 className="font-bold text-gray-900 dark:text-white uppercase tracking-wider text-xs mb-6">
-              Atención & Guías
+            <h4 className="font-bold text-gray-900 uppercase tracking-wider text-[11px] sm:text-xs mb-3 sm:mb-6">
+              Atención Directa
             </h4>
-            <ul className="space-y-3 text-xs sm:text-sm text-gray-500 dark:text-gray-400">
+            <ul className="space-y-2.5 sm:space-y-3 text-xs sm:text-sm text-gray-500">
               <li>
-                <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors flex items-center gap-1.5">
-                  <span className="material-icons-outlined text-emerald-600 text-sm">chat</span>
-                  Guía de Tallas por WhatsApp
-                </a>
-              </li>
-              <li>
-                <a href="#about" className="hover:text-primary transition-colors">
-                  Cuidado de Prendas & Lycras
+                <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors flex items-center gap-1.5 font-medium text-emerald-600">
+                  <span className="material-icons-outlined text-sm">chat</span>
+                  Asesoría de Tallas por WhatsApp
                 </a>
               </li>
               <li>
@@ -118,52 +111,55 @@ export default function Footer() {
               </li>
               <li>
                 <a href="#about" className="hover:text-primary transition-colors">
-                  Nuestra Filosofía Sostenible
+                  Cuidado de Telas & Lycras
                 </a>
               </li>
               <li>
-                <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
-                  Preguntas Frecuentes
+                <a href="#about" className="hover:text-primary transition-colors">
+                  Nuestra Filosofía de Confección
                 </a>
               </li>
             </ul>
           </div>
 
-          {/* Columna 4: Contacto Oficial */}
+          {/* Columna 4: Punto Físico y WhatsApp (Sin Email) */}
           <div>
-            <h4 className="font-bold text-gray-900 dark:text-white uppercase tracking-wider text-xs mb-6">
-              Contacto Directo
+            <h4 className="font-bold text-gray-900 uppercase tracking-wider text-[11px] sm:text-xs mb-3 sm:mb-6">
+              Visítanos o Escríbenos
             </h4>
-            <ul className="space-y-4 text-xs sm:text-sm text-gray-500 dark:text-gray-400">
+            <ul className="space-y-3 sm:space-y-4 text-xs sm:text-sm text-gray-500">
               <li className="flex items-start">
-                <span className="material-icons-outlined mr-2 text-primary text-base">location_on</span>
-                <span>{BRAND_DATA.address}</span>
+                <span className="material-icons-outlined mr-2 text-primary text-base flex-shrink-0 mt-0.5">location_on</span>
+                <span className="leading-snug">{BRAND_DATA.address}</span>
               </li>
               <li className="flex items-center">
-                <span className="material-icons-outlined mr-2 text-primary text-base">email</span>
-                <a href={`mailto:${BRAND_DATA.email}`} className="hover:text-primary transition-colors">
-                  {BRAND_DATA.email}
-                </a>
-              </li>
-              <li className="flex items-center">
-                <span className="material-icons-outlined mr-2 text-emerald-600 text-base">chat</span>
-                <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors font-semibold text-gray-800 dark:text-gray-200">
+                <span className="material-icons-outlined mr-2 text-emerald-600 text-base flex-shrink-0">chat</span>
+                <a
+                  href={whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-primary transition-colors font-bold text-gray-900"
+                >
                   {BRAND_DATA.whatsappDisplay}
                 </a>
+              </li>
+              <li className="flex items-center text-[11px] sm:text-xs text-gray-400">
+                <span className="material-icons-outlined mr-2 text-primary text-base flex-shrink-0">schedule</span>
+                <span>Lunes a Sábado: 9:00 AM - 7:00 PM</span>
               </li>
             </ul>
           </div>
         </div>
 
-        {/* Barra de Copyright y Legal */}
-        <div className="border-t border-gray-100 dark:border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-xs text-gray-400 text-center md:text-left">
-            © {new Date().getFullYear()} Nana Home. Todos los derechos reservados. Moda playera y vestidos de baño artesanales.
+        {/* Barra de Copyright */}
+        <div className="border-t border-gray-100 pt-6 sm:pt-8 flex flex-col md:flex-row justify-between items-center gap-3">
+          <p className="text-[11px] sm:text-xs text-gray-400 text-center md:text-left">
+            © {new Date().getFullYear()} Nana Home. Todos los derechos reservados. San Andresito Av. 68, Bogotá.
           </p>
-          <div className="flex space-x-6 text-xs text-gray-400">
-            <span className="hover:text-primary transition-colors cursor-pointer">Privacidad</span>
+          <div className="flex space-x-4 sm:space-x-6 text-[11px] sm:text-xs text-gray-400">
+            <span className="hover:text-primary transition-colors cursor-pointer">Catálogo Visual</span>
             <span className="hover:text-primary transition-colors cursor-pointer">Términos</span>
-            <span className="hover:text-primary transition-colors cursor-pointer">Cookies</span>
+            <span className="hover:text-primary transition-colors cursor-pointer">Privacidad</span>
           </div>
         </div>
       </div>

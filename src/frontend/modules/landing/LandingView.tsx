@@ -14,7 +14,6 @@ import Footer from './components/Footer';
 import ProductDetailModal from '@/frontend/components/ProductDetailModal';
 import SearchModal from '@/frontend/components/SearchModal';
 import WhatsAppFloatingButton from '@/frontend/components/WhatsAppFloatingButton';
-import ThemeToggle from '@/frontend/components/ThemeToggle';
 
 /**
  * LandingView Component
@@ -26,7 +25,7 @@ export default function LandingView() {
   const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
 
   return (
-    <div className="min-h-screen bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark transition-colors duration-300 flex flex-col justify-between selection:bg-primary/20 selection:text-primary">
+    <div className="min-h-screen bg-background-light text-text-light flex flex-col justify-between selection:bg-primary/20 selection:text-primary">
       {/* Barra de Navegación con logo oficial /logo.png */}
       <Navbar onSearchClick={() => setIsSearchOpen(true)} />
 
@@ -71,7 +70,6 @@ export default function LandingView() {
 
       {/* Botones de Acción Global */}
       <WhatsAppFloatingButton />
-      <ThemeToggle />
     </div>
   );
 }
