@@ -113,11 +113,12 @@ nana_col/
 1. **Modo Catálogo Visual (Sin pasarela de pago ni carrito de compras):**
    - La plataforma web opera exclusivamente como catálogo de visualización y asesoría.
    - En lugar de carritos o checkouts complejos, todas las intenciones de compra y consulta se canalizan directamente a **WhatsApp**.
-2. **Visualización Invertida Obligatoria (Modelo $\rightarrow$ Prenda):**
+2. **Visualización Limpia de Catálogo (Modelo $\rightarrow$ Prenda en Hover / Clic abre Modal):**
    - **Vista Primaria (Default):** Primero debe verse la **MODELO** luciendo el vestido (`modelo_vestido_*.jpeg`).
-   - **Vista Secundaria (Hover en PC / Toque en Celular):** Al pasar el cursor o dar toque táctil en móviles, cambia a la foto de **SOLO EL VESTIDO** (`vestido_*.jpeg`).
-   - En prendas que solo cuentan con fotografía en modelo (`modelo_vestido_azulmarino.jpeg`, `modelo_vestido_negro.jpeg`), se aplica zoom suave sin estados rotos.
-   - En dispositivos móviles, cada tarjeta incluye un botón táctil interactivo `[ Modelo | Vestido ]` y soporte de toque directo sobre la imagen.
+   - **Vista Secundaria (Hover en PC):** Al pasar el cursor en computadores de escritorio, cambia fluidamente a la foto de **SOLO EL VESTIDO** (`vestido_*.jpeg`).
+   - **Fotos Limpias sin Etiquetas Superpuestas:** Se eliminan todas las etiquetas o badges ("Bestseller", "Nuevo", "-15% off", etc.) sobre las fotos de las modelos para que el cliente aprecie la prenda sin obstrucciones.
+   - **Clic Directo para Ver Detalle:** Al dar clic directamente sobre la imagen o el título en cualquier dispositivo (móvil o PC), se abre inmediatamente el modal de detalle del vestido. Se retira el botón táctil `[ Modelo | Vestido ]`.
+   - **Título Único en Color Naranja Oficial:** Cada tarjeta cuenta con un único título en tono naranja/coral oficial (`text-primary font-bold uppercase tracking-wider`) que presenta el color y su característica corta sin repetir "Vestido de Baño" de forma redundante (tanto para línea de mujer como infantil).
 3. **Línea Infantil Kids (Protección Solar & Personajes):**
    - Diseños inspirados en personajes favoritos: `niño_spiderman`, `niño_batman`, `niño_hulk`, `niño_tiburon`, `niña_gato`, `niña_mumis`, `niña_sisne`.
    - Garantía de protección solar certificada **UPF 50+** para proteger la piel sensible infantil.

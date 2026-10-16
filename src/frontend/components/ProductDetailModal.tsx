@@ -89,17 +89,6 @@ export default function ProductDetailModal({ product, onClose }: ProductDetailMo
                 className="max-h-full max-w-full w-auto h-auto object-contain rounded-xl drop-shadow-xs transition-transform duration-300"
               />
 
-              {product.badge && (
-                <div className="absolute top-3 left-3 z-10 pointer-events-none">
-                  <span
-                    className={`${
-                      product.badgeColor || 'bg-primary text-white'
-                    } text-[10px] sm:text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-full shadow-md`}
-                  >
-                    {product.badge}
-                  </span>
-                </div>
-              )}
             </div>
 
             {/* Selector de vistas: Primero MODELO, luego SOLO VESTIDO */}

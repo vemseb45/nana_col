@@ -171,15 +171,6 @@ export default async function ProductDetailPage({ params }: PageProps) {
                   {refCode}
                 </span>
 
-                {product.badge && (
-                  <span
-                    className={`absolute top-3 right-3 z-20 text-white text-[11px] font-bold px-3 py-1 rounded-full shadow-sm ${
-                      product.badgeColor || 'bg-primary'
-                    }`}
-                  >
-                    {product.badge}
-                  </span>
-                )}
               </div>
 
               {/* Si tiene foto exclusiva de la prenda, mostrar miniatura / segunda vista */}
