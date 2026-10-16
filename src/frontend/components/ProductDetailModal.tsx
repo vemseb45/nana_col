@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { ProductItem } from '@/types/product.types';
 import { getWhatsAppProductUrl } from '@/constants/brand.data';
 
@@ -13,17 +13,21 @@ interface ProductDetailModalProps {
  * ProductDetailModal Component
  * Modal interactivo:
  * - Muestra primero la foto en MODELO y permite alternar a SOLO VESTIDO.
+ * - Zoom dinámico en PC al pasar el mouse sobre la foto para apreciar textura y detalles.
  * - Botón de asesoría por WhatsApp con enlace directo a la foto de la prenda.
  * - Diseño 100% responsive optimizado para celulares.
  */
 export default function ProductDetailModal({ product, onClose }: ProductDetailModalProps) {
   const [selectedImageOverride, setSelectedImageOverride] = useState<string | null>(null);
   const [currentProductId, setCurrentProductId] = useState<string | null>(null);
+  const [isZoomed, setIsZoomed] = useState(false);
+  const imgRef = useRef<HTMLImageElement>(null);
 
   // Sincronización oficial de React 19 durante render
   if (product && product.id !== currentProductId) {
     setCurrentProductId(product.id);
     setSelectedImageOverride(null);
+    setIsZoomed(false);
   }
 
   // Sincronización del overflow del body
@@ -48,6 +52,13 @@ export default function ProductDetailModal({ product, onClose }: ProductDetailMo
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [onClose]);
 
+  // Restablecer transform-origin en el DOM al cambiar de imagen o producto
+  useEffect(() => {
+    if (imgRef.current) {
+      imgRef.current.style.transformOrigin = 'center center';
+    }
+  }, [selectedImageOverride, currentProductId]);
+
   if (!product) return null;
 
   const activeImage = selectedImageOverride || product.primaryImage;
@@ -58,6 +69,45 @@ export default function ProductDetailModal({ product, onClose }: ProductDetailMo
     price: product.price,
     colorName: product.colorName,
   });
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    // Solo activar en PC o dispositivos con cursor fino (hover)
+    if (typeof window !== 'undefined' && !window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+      return;
+    }
+    const rect = e.currentTarget.getBoundingClientRect();
+    if (rect.width === 0 || rect.height === 0) return;
+
+    const x = Math.max(0, Math.min(100, ((e.clientX - rect.left) / rect.width) * 100));
+    const y = Math.max(0, Math.min(100, ((e.clientY - rect.top) / rect.height) * 100));
+
+    if (imgRef.current) {
+      imgRef.current.style.transformOrigin = `${x}% ${y}%`;
+    }
+  };
+
+  const handleMouseEnter = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (typeof window !== 'undefined' && !window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+      return;
+    }
+    const rect = e.currentTarget.getBoundingClientRect();
+    if (rect.width === 0 || rect.height === 0) return;
+
+    const x = Math.max(0, Math.min(100, ((e.clientX - rect.left) / rect.width) * 100));
+    const y = Math.max(0, Math.min(100, ((e.clientY - rect.top) / rect.height) * 100));
+
+    if (imgRef.current) {
+      imgRef.current.style.transformOrigin = `${x}% ${y}%`;
+    }
+    setIsZoomed(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsZoomed(false);
+    if (imgRef.current) {
+      imgRef.current.style.transformOrigin = 'center center';
+    }
+  };
 
   return (
     <div 
@@ -78,17 +128,32 @@ export default function ProductDetailModal({ product, onClose }: ProductDetailMo
         </button>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-8 p-4 sm:p-8">
-          {/* Columna Izquierda: Visualización Completa Inmediata */}
+          {/* Columna Izquierda: Visualización Completa Inmediata y Zoom Dinámico */}
           <div className="flex flex-col gap-3">
-            <div className="relative aspect-[3/4] sm:aspect-[4/5] w-full rounded-2xl overflow-hidden bg-orange-50/60 border border-orange-100/80 shadow-inner flex items-center justify-center p-2.5 sm:p-4">
+            {/* Contenedor de Imagen: Clic no propaga, Hover en PC activa zoom detallado */}
+            <div 
+              onMouseMove={handleMouseMove}
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+              className={`relative aspect-[3/4] sm:aspect-[4/5] w-full rounded-2xl overflow-hidden bg-orange-50/60 border border-orange-100/80 shadow-inner flex items-center justify-center p-2.5 sm:p-4 select-none ${
+                isZoomed ? 'md:cursor-crosshair' : 'md:cursor-zoom-in'
+              }`}
+              title="Pasa el cursor sobre la foto para hacer zoom detallado"
+            >
               <img
+                ref={imgRef}
                 src={activeImage}
                 alt={product.name}
                 loading="eager"
                 decoding="async"
-                className="max-h-full max-w-full w-auto h-auto object-contain rounded-xl drop-shadow-xs transition-transform duration-300"
+                draggable={false}
+                style={{
+                  transform: isZoomed ? 'scale(2.2)' : 'scale(1)',
+                }}
+                className={`max-h-full max-w-full w-auto h-auto object-contain rounded-xl drop-shadow-xs transition-transform ${
+                  isZoomed ? 'duration-150 ease-out' : 'duration-300 ease-out'
+                }`}
               />
-
             </div>
 
             {/* Selector de vistas: Primero MODELO, luego SOLO VESTIDO */}
@@ -96,7 +161,10 @@ export default function ProductDetailModal({ product, onClose }: ProductDetailMo
               <div className="flex items-center gap-2 sm:gap-3">
                 <button
                   type="button"
-                  onClick={() => setSelectedImageOverride(product.primaryImage)}
+                  onClick={() => {
+                    setSelectedImageOverride(product.primaryImage);
+                    setIsZoomed(false);
+                  }}
                   className={`flex-1 py-2 px-2.5 rounded-xl border text-[11px] sm:text-xs font-bold flex items-center justify-center gap-1.5 transition-all ${
                     activeImage === product.primaryImage
                       ? 'border-primary bg-primary/10 text-primary'
@@ -109,7 +177,10 @@ export default function ProductDetailModal({ product, onClose }: ProductDetailMo
 
                 <button
                   type="button"
-                  onClick={() => setSelectedImageOverride(product.hoverImage!)}
+                  onClick={() => {
+                    setSelectedImageOverride(product.hoverImage!);
+                    setIsZoomed(false);
+                  }}
                   className={`flex-1 py-2 px-2.5 rounded-xl border text-[11px] sm:text-xs font-bold flex items-center justify-center gap-1.5 transition-all ${
                     activeImage === product.hoverImage
                       ? 'border-primary bg-primary/10 text-primary'
@@ -121,6 +192,12 @@ export default function ProductDetailModal({ product, onClose }: ProductDetailMo
                 </button>
               </div>
             )}
+
+            {/* Indicador de Zoom en PC */}
+            <p className="hidden md:flex items-center justify-center gap-1.5 text-[11px] text-gray-400 font-medium select-none">
+              <span className="material-icons-outlined text-sm text-primary">zoom_in</span>
+              <span>Pasa el cursor sobre la foto para hacer zoom</span>
+            </p>
           </div>
 
           {/* Columna Derecha: Información del Producto */}
