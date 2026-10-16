@@ -134,7 +134,8 @@ nana_col/
    - Las imágenes de previsualización residen optimizadas en `public/og/*.jpg` con peso menor a 100 KB (WhatsApp descarta imágenes superiores a 300 KB).
    - El mensaje incluye un código de referencia directo y legible (ej. `REF: NC-VESTIDO-AZUL` o `REF: NC-NINO-SPIDERMAN`), nombre de prenda, color y precio en COP. Se eliminan enlaces crudos o antiestéticos a archivos `/img/`.
 8. **Logotipo y Favicon Oficial:**
-   - Uso estricto de `public/logo.png`, `public/favicon.ico` y `src/app/icon.png`. Prohibido el uso de logotipos genéricos o favicons por defecto de Next.js.
+   - Uso estricto de `public/logo.png`, `public/favicon.ico`, `src/app/icon.png` y `public/apple-touch-icon.png`.
+   - El favicon y el logotipo deben ser **estrictamente circulares** con esquinas 100% transparentes (canal alfa), evitando que el navegador renderice recuadros o marcos cuadrados en las pestañas del navegador o dispositivos móviles. Prohibido el uso de logotipos genéricos o favicons por defecto de Next.js.
 9. **Diseño Responsive Proporcional en Celulares:**
    - En dispositivos móviles, las grillas de catálogo deben utilizar **2 columnas (`grid-cols-2`)** para evitar tarjetas desproporcionadas y permitir una navegación ágil y estética.
    - Las tipografías de títulos (`Playfair Display`) y cuerpo de texto (`DM Sans`) deben escalarse proporcionalmente para no saturar la pantalla del celular.

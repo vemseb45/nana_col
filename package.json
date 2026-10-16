@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint",
     "og:images": "node scripts/generate-og-images.mjs",
-    "optimize:images": "node scripts/optimize-catalog-images.mjs"
+    "optimize:images": "node scripts/optimize-catalog-images.mjs",
+    "round:favicon": "node scripts/generate-round-favicon.mjs"
   },
   "dependencies": {
     "@prisma/client": "^5.22.0",
