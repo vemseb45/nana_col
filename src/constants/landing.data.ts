@@ -1,15 +1,19 @@
 import { CategoryItem, ProductItem } from "@/types/product.types";
 import { WOMEN_PRODUCTS } from "./products.data";
 import { KIDS_PRODUCTS } from "./kids-products.data";
+import { FAMILY_SWIMWEAR_PRODUCTS, FAMILY_TRUNKS_PRODUCTS } from "./family-products.data";
 
 export { WOMEN_PRODUCTS } from "./products.data";
 export { KIDS_PRODUCTS } from "./kids-products.data";
+export { FAMILY_SWIMWEAR_PRODUCTS, FAMILY_TRUNKS_PRODUCTS } from "./family-products.data";
 
 /**
  * Catálogo completo unificado de productos Nana.col
  */
 export const ALL_PRODUCTS: ProductItem[] = [
   ...WOMEN_PRODUCTS,
+  ...FAMILY_SWIMWEAR_PRODUCTS,
+  ...FAMILY_TRUNKS_PRODUCTS,
   ...KIDS_PRODUCTS,
 ];
 
@@ -24,8 +28,28 @@ export const CATEGORIES: CategoryItem[] = [
     desc: "Siluetas vanguardistas, moldeadoras y cortes clásicos con soporte premium.",
     img: "/img/modelo_vestido_flores.jpeg",
     radius: "rounded-[40%_60%_70%_30%/40%_50%_60%_50%]",
-    tag: "Colección 2026",
+    tag: "Colección Mujer",
     targetId: "collection-mujer",
+  },
+  {
+    id: "cat-familia-vestidos",
+    title: "Vestidos de Baño en Familia",
+    slug: "vestidos-bano-familia",
+    desc: "Sets playeros coordinados para mamá, papá e hijos con doble escena fotográfica.",
+    img: "/img/modelos_vestidos_familiares_rosado_cangrejos.jpeg",
+    radius: "rounded-[50%_50%_60%_40%/50%_60%_40%_50%]",
+    tag: "Sets Familiares",
+    targetId: "collection-familia-vestidos",
+  },
+  {
+    id: "cat-familia-pantalonetas",
+    title: "Pantalonetas en Familia",
+    slug: "pantalonetas-familia",
+    desc: "Pantalonetas a juego para toda la familia con secado rápido y protección solar.",
+    img: "/img/pantalonetas_familiares_azul_marino.jpeg",
+    radius: "rounded-[60%_40%_50%_50%/40%_50%_50%_60%]",
+    tag: "Estilo Playero",
+    targetId: "collection-familia-pantalonetas",
   },
   {
     id: "cat-kids",
@@ -54,9 +78,10 @@ export const CATEGORIES: CategoryItem[] = [
  */
 export const NAV_LINKS = [
   { label: "Mujer", href: "#collection-mujer" },
+  { label: "Vestidos Familia", href: "#collection-familia-vestidos" },
+  { label: "Pantalonetas Familia", href: "#collection-familia-pantalonetas" },
   { label: "Niños & Niñas", href: "#collection-kids" },
   { label: "Categorías", href: "#categorias" },
-  { label: "Nuestra Esencia", href: "#about" },
 ];
 
 /**

@@ -1,5 +1,5 @@
 import { ProductItem } from "@/types/product.types";
-import { ALL_PRODUCTS, WOMEN_PRODUCTS, KIDS_PRODUCTS } from "@/constants/landing.data";
+import { ALL_PRODUCTS, WOMEN_PRODUCTS, KIDS_PRODUCTS, FAMILY_SWIMWEAR_PRODUCTS, FAMILY_TRUNKS_PRODUCTS } from "@/constants/landing.data";
 
 export interface ProductQueryFilter {
   category?: string;
@@ -13,6 +13,8 @@ export interface IProductRepository {
   getById(id: string): Promise<ProductItem | null>;
   getWomenCollection(): Promise<ProductItem[]>;
   getKidsCollection(): Promise<ProductItem[]>;
+  getFamilySwimwearCollection(): Promise<ProductItem[]>;
+  getFamilyTrunksCollection(): Promise<ProductItem[]>;
   getFeatured(): Promise<ProductItem[]>;
 }
 
@@ -65,6 +67,14 @@ export class ProductRepository implements IProductRepository {
 
   async getKidsCollection(): Promise<ProductItem[]> {
     return KIDS_PRODUCTS;
+  }
+
+  async getFamilySwimwearCollection(): Promise<ProductItem[]> {
+    return FAMILY_SWIMWEAR_PRODUCTS;
+  }
+
+  async getFamilyTrunksCollection(): Promise<ProductItem[]> {
+    return FAMILY_TRUNKS_PRODUCTS;
   }
 
   async getFeatured(): Promise<ProductItem[]> {

@@ -7,6 +7,8 @@ import Hero from './components/Hero';
 import FeaturesBanner from './components/FeaturesBanner';
 import Categories from './components/Categories';
 import Collection from './components/Collection';
+import FamilySwimwearCollection from './components/FamilySwimwearCollection';
+import FamilyTrunksCollection from './components/FamilyTrunksCollection';
 import KidsCollection from './components/KidsCollection';
 import About from './components/About';
 import Newsletter from './components/Newsletter';
@@ -42,6 +44,12 @@ export default function LandingView() {
 
         {/* Colección Mujer - Vestidos de Baño con Parejas Prenda / Modelo */}
         <Collection onOpenQuickView={(prod) => setSelectedProduct(prod)} />
+
+        {/* Sección Familiar - Vestidos de Baño en Familia (Doble Escena) */}
+        <FamilySwimwearCollection onOpenQuickView={(prod) => setSelectedProduct(prod)} />
+
+        {/* Sección Familiar - Pantalonetas en Familia */}
+        <FamilyTrunksCollection onOpenQuickView={(prod) => setSelectedProduct(prod)} />
 
         {/* Colección Infantil - Vestidos y Trajes de Baño Niños y Niñas */}
         <KidsCollection onOpenQuickView={(prod) => setSelectedProduct(prod)} />

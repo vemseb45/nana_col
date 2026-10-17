@@ -156,7 +156,7 @@ export default function ProductDetailModal({ product, onClose }: ProductDetailMo
               />
             </div>
 
-            {/* Selector de vistas: Primero MODELO, luego SOLO VESTIDO */}
+            {/* Selector de vistas: Escena 1 / Escena 2 para familiar, o Foto en Modelo / Solo Vestido */}
             {hasTwoImages && product.hoverImage && (
               <div className="flex items-center gap-2 sm:gap-3">
                 <button
@@ -171,8 +171,10 @@ export default function ProductDetailModal({ product, onClose }: ProductDetailMo
                       : 'border-gray-200 text-gray-600 hover:border-primary'
                   }`}
                 >
-                  <span className="material-icons-outlined text-sm">person</span>
-                  Foto en Modelo
+                  <span className="material-icons-outlined text-sm">
+                    {product.category === 'vestidos_familiares' ? 'photo_camera' : 'person'}
+                  </span>
+                  {product.category === 'vestidos_familiares' ? 'Escena 1' : 'Foto en Modelo'}
                 </button>
 
                 <button
@@ -187,8 +189,10 @@ export default function ProductDetailModal({ product, onClose }: ProductDetailMo
                       : 'border-gray-200 text-gray-600 hover:border-primary'
                   }`}
                 >
-                  <span className="material-icons-outlined text-sm">checkroom</span>
-                  Solo Vestido
+                  <span className="material-icons-outlined text-sm">
+                    {product.category === 'vestidos_familiares' ? 'collections' : 'checkroom'}
+                  </span>
+                  {product.category === 'vestidos_familiares' ? 'Escena 2' : 'Solo Vestido'}
                 </button>
               </div>
             )}

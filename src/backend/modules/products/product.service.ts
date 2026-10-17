@@ -23,6 +23,14 @@ export class ProductService {
     return this.repo.getKidsCollection();
   }
 
+  async getFamilySwimwear(): Promise<ProductItem[]> {
+    return this.repo.getFamilySwimwearCollection();
+  }
+
+  async getFamilyTrunks(): Promise<ProductItem[]> {
+    return this.repo.getFamilyTrunksCollection();
+  }
+
   async getHeroHighlights(): Promise<ProductItem[]> {
     return this.repo.getFeatured();
   }

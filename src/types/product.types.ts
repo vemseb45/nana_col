@@ -3,9 +3,22 @@
  * Principio SOLID: Interface Segregation Principle (ISP)
  */
 
-export type ProductCategory = 'mujer' | 'ninos' | 'accesorios';
+export type ProductCategory = 
+  | 'mujer' 
+  | 'ninos' 
+  | 'accesorios' 
+  | 'vestidos_familiares' 
+  | 'pantalonetas_familiares';
 
-export type ProductSubcategory = 'vestido_bano' | 'bikini' | 'enterizo' | 'nino' | 'nina';
+export type ProductSubcategory = 
+  | 'vestido_bano' 
+  | 'bikini' 
+  | 'enterizo' 
+  | 'nino' 
+  | 'nina' 
+  | 'familia' 
+  | 'pantaloneta'
+  | 'resort';
 
 export interface ProductItem {
   id: string;
