@@ -32,28 +32,9 @@ export default function Hero() {
           <span className="italic font-normal text-primary">Tropical & Kids</span>
         </h1>
 
-        <p className="text-gray-800 text-xs sm:text-base md:text-lg font-light mb-6 sm:mb-10 max-w-xl mx-auto drop-shadow leading-relaxed">
+        <p className="text-gray-800 text-xs sm:text-base md:text-lg font-light mb-2 sm:mb-4 max-w-xl mx-auto drop-shadow leading-relaxed">
           Vestidos de baño femeninos de corte sofisticado y trajes infantiles con máxima protección UV 50+. Confección artesanal en Bogotá.
         </p>
-
-        {/* Botones de Navegación Rápida */}
-        <div className="flex flex-col sm:flex-row gap-2.5 sm:gap-4 justify-center items-center max-w-md mx-auto sm:max-w-none">
-          <a
-            href="#collection-mujer"
-            className="w-full sm:w-auto px-6 py-3 sm:px-8 sm:py-3.5 bg-primary text-white text-[11px] sm:text-xs uppercase tracking-widest font-bold hover:bg-orange-600 transition-all rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 flex items-center justify-center gap-2"
-          >
-            <span>Colección Mujer</span>
-            <span className="material-icons-outlined text-sm">arrow_downward</span>
-          </a>
-
-          <a
-            href="#collection-kids"
-            className="w-full sm:w-auto px-6 py-3 sm:px-8 sm:py-3.5 bg-white/95 backdrop-blur-md text-gray-900 text-[11px] sm:text-xs uppercase tracking-widest font-bold hover:bg-white transition-all rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 flex items-center justify-center gap-2"
-          >
-            <span className="material-icons-outlined text-sm text-primary">child_care</span>
-            <span>Línea Niños (Héroes)</span>
-          </a>
-        </div>
       </div>
     </header>
   );

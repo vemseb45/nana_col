@@ -1,15 +1,28 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
+import { getAuthCookieName } from '@/backend/modules/auth/auth.cookies';
+import { verifyAdminJwt } from '@/backend/modules/auth/jwt';
 
 /**
  * Next.js 16 Proxy (formerly Middleware)
- * Permite manejar redirecciones, cabeceras de seguridad y control de peticiones.
+ * Permite manejar redirecciones, cabeceras de seguridad y protección de rutas /admin.
  */
-export function proxy(request: NextRequest) {
-  const response = NextResponse.next();
+export async function proxy(request: NextRequest) {
+  if (!request.nextUrl) return NextResponse.next();
 
-  // Log o auditoría en desarrollo si fuera necesario
-  if (!request.nextUrl) return response;
+  const { pathname } = request.nextUrl;
+
+  if (pathname.startsWith('/admin') && pathname !== '/admin/login') {
+    const token = request.cookies.get(getAuthCookieName())?.value;
+    const payload = token ? await verifyAdminJwt(token) : null;
+
+    if (!payload) {
+      const loginUrl = new URL('/admin/login', request.url);
+      return NextResponse.redirect(loginUrl);
+    }
+  }
+
+  const response = NextResponse.next();
 
   // Cabeceras de seguridad recomendadas (Clean Code & Security)
   response.headers.set('X-Frame-Options', 'DENY');

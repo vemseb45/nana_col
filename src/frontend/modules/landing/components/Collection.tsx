@@ -6,6 +6,7 @@ import { WOMEN_PRODUCTS } from '@/constants/landing.data';
 import ProductCard from '@/frontend/components/ProductCard';
 
 interface CollectionProps {
+  products?: ProductItem[];
   onOpenQuickView: (product: ProductItem) => void;
 }
 
@@ -16,10 +17,10 @@ type FilterTab = 'todos' | 'bestseller' | 'nuevo' | 'edicion_limitada';
  * Optimizado para móvil (grid de 2 columnas compactas) y desktop (4 columnas).
  * Primero muestra la foto en modelo y al pasar el mouse / tocar se ve solo el vestido.
  */
-export default function Collection({ onOpenQuickView }: CollectionProps) {
+export default function Collection({ products = WOMEN_PRODUCTS, onOpenQuickView }: CollectionProps) {
   const [activeTab, setActiveTab] = useState<FilterTab>('todos');
 
-  const filteredProducts = WOMEN_PRODUCTS.filter((prod) => {
+  const filteredProducts = products.filter((prod) => {
     if (activeTab === 'todos') return true;
     if (activeTab === 'bestseller') return prod.badge?.toLowerCase().includes('bestseller') || prod.featured;
     if (activeTab === 'nuevo') return prod.isNew || prod.badge?.toLowerCase().includes('nuevo');

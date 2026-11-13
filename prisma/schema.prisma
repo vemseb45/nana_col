@@ -1,0 +1,68 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model AdminUser {
+  id           String         @id @default(cuid())
+  username     String         @unique
+  name         String
+  passwordHash String         @map("password_hash")
+  role         String         @default("ADMIN")
+  isActive     Boolean        @default(true) @map("is_active")
+  lastLoginAt  DateTime?      @map("last_login_at")
+  createdAt    DateTime       @default(now()) @map("created_at")
+  updatedAt    DateTime       @updatedAt @map("updated_at")
+  sessions     AdminSession[]
+
+  @@map("admin_users")
+}
+
+model AdminSession {
+  id        String    @id @default(cuid())
+  adminId   String    @map("admin_id")
+  admin     AdminUser @relation(fields: [adminId], references: [id], onDelete: Cascade)
+  tokenId   String    @unique @map("token_id")
+  ipAddress String?   @map("ip_address")
+  userAgent String?   @map("user_agent")
+  expiresAt DateTime  @map("expires_at")
+  revokedAt DateTime? @map("revoked_at")
+  createdAt DateTime  @default(now()) @map("created_at")
+
+  @@index([adminId])
+  @@index([expiresAt])
+  @@map("admin_sessions")
+}
+
+model Product {
+  id            String   @id
+  slug          String   @unique
+  name          String
+  category      String
+  subcategory   String
+  theme         String?
+  colorName     String   @map("color_name")
+  price         String
+  originalPrice String?  @map("original_price")
+  description   String
+  material      String
+  features      String[]
+  sizes         String[]
+  primaryImage  String   @map("primary_image")
+  hoverImage    String?  @map("hover_image")
+  badge         String?
+  badgeColor    String?  @map("badge_color")
+  isNew         Boolean  @default(false) @map("is_new")
+  featured      Boolean  @default(false)
+  sortOrder     Int      @default(0) @map("sort_order")
+  createdAt     DateTime @default(now()) @map("created_at")
+  updatedAt     DateTime @updatedAt @map("updated_at")
+
+  @@index([category])
+  @@index([sortOrder])
+  @@map("products")
+}

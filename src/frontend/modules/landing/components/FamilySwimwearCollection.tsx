@@ -5,6 +5,7 @@ import { FAMILY_SWIMWEAR_PRODUCTS } from '@/constants/landing.data';
 import ProductCard from '@/frontend/components/ProductCard';
 
 interface FamilySwimwearCollectionProps {
+  products?: ProductItem[];
   onOpenQuickView: (product: ProductItem) => void;
 }
 
@@ -13,7 +14,10 @@ interface FamilySwimwearCollectionProps {
  * Sección especializada en vestidos y trajes de baño coordinados en familia.
  * Cada prenda cuenta con dos escenas fotográficas exclusivas en playa.
  */
-export default function FamilySwimwearCollection({ onOpenQuickView }: FamilySwimwearCollectionProps) {
+export default function FamilySwimwearCollection({
+  products = FAMILY_SWIMWEAR_PRODUCTS,
+  onOpenQuickView,
+}: FamilySwimwearCollectionProps) {
   return (
     <section id="collection-familia-vestidos" className="py-12 sm:py-20 lg:py-24 bg-white scroll-mt-16 sm:scroll-mt-20">
       <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
@@ -42,7 +46,7 @@ export default function FamilySwimwearCollection({ onOpenQuickView }: FamilySwim
 
         {/* Grid de Productos: 2 columnas adaptadas para móvil y desktop centrado */}
         <div className="grid grid-cols-2 md:grid-cols-2 gap-3 sm:gap-8 max-w-4xl mx-auto">
-          {FAMILY_SWIMWEAR_PRODUCTS.map((product) => (
+          {products.map((product) => (
             <ProductCard
               key={product.id}
               product={product}

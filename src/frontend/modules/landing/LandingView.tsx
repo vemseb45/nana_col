@@ -1,7 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { ProductItem } from '@/types/product.types';
+import { ALL_PRODUCTS } from '@/constants/landing.data';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import FeaturesBanner from './components/FeaturesBanner';
@@ -17,14 +18,35 @@ import ProductDetailModal from '@/frontend/components/ProductDetailModal';
 import SearchModal from '@/frontend/components/SearchModal';
 import WhatsAppFloatingButton from '@/frontend/components/WhatsAppFloatingButton';
 
+interface LandingViewProps {
+  products?: ProductItem[];
+}
+
 /**
  * LandingView Component
- * Orquestador principal modular del frontend para Nana Home.
+ * Orquestador principal modular del frontend para Nana.col.
  * Principio SOLID: Single Responsibility & Inversión de Control.
  */
-export default function LandingView() {
+export default function LandingView({ products = ALL_PRODUCTS }: LandingViewProps) {
   const [selectedProduct, setSelectedProduct] = useState<ProductItem | null>(null);
   const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
+
+  const womenProducts = useMemo(
+    () => products.filter((p) => p.category === 'mujer'),
+    [products]
+  );
+  const familySwimwearProducts = useMemo(
+    () => products.filter((p) => p.category === 'vestidos_familiares'),
+    [products]
+  );
+  const familyTrunksProducts = useMemo(
+    () => products.filter((p) => p.category === 'pantalonetas_familiares'),
+    [products]
+  );
+  const kidsProducts = useMemo(
+    () => products.filter((p) => p.category === 'ninos'),
+    [products]
+  );
 
   return (
     <div className="min-h-screen bg-background-light text-text-light flex flex-col justify-between selection:bg-primary/20 selection:text-primary">
@@ -43,16 +65,22 @@ export default function LandingView() {
         <Categories />
 
         {/* Colección Mujer - Vestidos de Baño con Parejas Prenda / Modelo */}
-        <Collection onOpenQuickView={(prod) => setSelectedProduct(prod)} />
+        <Collection products={womenProducts} onOpenQuickView={(prod) => setSelectedProduct(prod)} />
 
         {/* Sección Familiar - Vestidos de Baño en Familia (Doble Escena) */}
-        <FamilySwimwearCollection onOpenQuickView={(prod) => setSelectedProduct(prod)} />
+        <FamilySwimwearCollection
+          products={familySwimwearProducts}
+          onOpenQuickView={(prod) => setSelectedProduct(prod)}
+        />
 
         {/* Sección Familiar - Pantalonetas en Familia */}
-        <FamilyTrunksCollection onOpenQuickView={(prod) => setSelectedProduct(prod)} />
+        <FamilyTrunksCollection
+          products={familyTrunksProducts}
+          onOpenQuickView={(prod) => setSelectedProduct(prod)}
+        />
 
         {/* Colección Infantil - Vestidos y Trajes de Baño Niños y Niñas */}
-        <KidsCollection onOpenQuickView={(prod) => setSelectedProduct(prod)} />
+        <KidsCollection products={kidsProducts} onOpenQuickView={(prod) => setSelectedProduct(prod)} />
 
         {/* Nuestra Esencia / Sostenibilidad */}
         <About />
@@ -72,6 +100,7 @@ export default function LandingView() {
 
       <SearchModal
         isOpen={isSearchOpen}
+        products={products}
         onClose={() => setIsSearchOpen(false)}
         onSelectProduct={(prod) => setSelectedProduct(prod)}
       />

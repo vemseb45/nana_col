@@ -6,6 +6,7 @@ import { KIDS_PRODUCTS } from '@/constants/landing.data';
 import ProductCard from '@/frontend/components/ProductCard';
 
 interface KidsCollectionProps {
+  products?: ProductItem[];
   onOpenQuickView: (product: ProductItem) => void;
 }
 
@@ -16,10 +17,13 @@ type KidsFilter = 'todos' | 'nino' | 'nina';
  * Sección especializada en trajes y vestidos de baño para niños y niñas.
  * Ajustado a 2 columnas en móviles para evitar tamaños desproporcionados.
  */
-export default function KidsCollection({ onOpenQuickView }: KidsCollectionProps) {
+export default function KidsCollection({
+  products = KIDS_PRODUCTS,
+  onOpenQuickView,
+}: KidsCollectionProps) {
   const [activeFilter, setActiveFilter] = useState<KidsFilter>('todos');
 
-  const filteredKids = KIDS_PRODUCTS.filter((prod) => {
+  const filteredKids = products.filter((prod) => {
     if (activeFilter === 'todos') return true;
     return prod.subcategory === activeFilter;
   });

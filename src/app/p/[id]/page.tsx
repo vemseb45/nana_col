@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { ALL_PRODUCTS } from '@/constants/landing.data';
+import { productService } from '@/backend/modules/products/product.service';
 import {
   BRAND_DATA,
   SITE_URL,
@@ -11,18 +11,10 @@ import {
   getWhatsAppProductUrl,
 } from '@/constants/brand.data';
 
+export const dynamic = 'force-dynamic';
+
 interface PageProps {
   params: Promise<{ id: string }>;
-}
-
-/**
- * Pre-renderizado estático de todas las páginas de producto
- * para optimización SEO y previsualización instantánea de WhatsApp.
- */
-export async function generateStaticParams() {
-  return ALL_PRODUCTS.map((product) => ({
-    id: product.id,
-  }));
 }
 
 /**
@@ -31,7 +23,7 @@ export async function generateStaticParams() {
  */
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { id } = await params;
-  const product = ALL_PRODUCTS.find((p) => p.id === id);
+  const product = await productService.getProduct(id);
 
   if (!product) {
     return {
@@ -83,7 +75,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
  */
 export default async function ProductDetailPage({ params }: PageProps) {
   const { id } = await params;
-  const product = ALL_PRODUCTS.find((p) => p.id === id);
+  const product = await productService.getProduct(id);
 
   if (!product) {
     notFound();

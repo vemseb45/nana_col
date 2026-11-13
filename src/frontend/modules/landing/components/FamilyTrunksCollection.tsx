@@ -6,6 +6,7 @@ import { FAMILY_TRUNKS_PRODUCTS } from '@/constants/landing.data';
 import ProductCard from '@/frontend/components/ProductCard';
 
 interface FamilyTrunksCollectionProps {
+  products?: ProductItem[];
   onOpenQuickView: (product: ProductItem) => void;
 }
 
@@ -16,10 +17,13 @@ type TrunksFilter = 'todos' | 'palmeras' | 'rayas' | 'marino';
  * Sección especializada en pantalonetas playeras a juego para toda la familia.
  * Grid responsive de 2 columnas en móvil y 4 en desktop.
  */
-export default function FamilyTrunksCollection({ onOpenQuickView }: FamilyTrunksCollectionProps) {
+export default function FamilyTrunksCollection({
+  products = FAMILY_TRUNKS_PRODUCTS,
+  onOpenQuickView,
+}: FamilyTrunksCollectionProps) {
   const [activeFilter, setActiveFilter] = useState<TrunksFilter>('todos');
 
-  const filteredTrunks = FAMILY_TRUNKS_PRODUCTS.filter((prod) => {
+  const filteredTrunks = products.filter((prod) => {
     if (activeFilter === 'todos') return true;
     if (activeFilter === 'palmeras') {
       return prod.colorName.toLowerCase().includes('palmera') || prod.name.toLowerCase().includes('palmera');

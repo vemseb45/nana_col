@@ -6,6 +6,7 @@ import { ProductItem } from '@/types/product.types';
 
 interface SearchModalProps {
   isOpen: boolean;
+  products?: ProductItem[];
   onClose: () => void;
   onSelectProduct: (product: ProductItem) => void;
 }
@@ -14,7 +15,12 @@ interface SearchModalProps {
  * SearchModal Component
  * Búsqueda instantánea en el catálogo de Nana Home (Mujer y Niños).
  */
-export default function SearchModal({ isOpen, onClose, onSelectProduct }: SearchModalProps) {
+export default function SearchModal({
+  isOpen,
+  products = ALL_PRODUCTS,
+  onClose,
+  onSelectProduct,
+}: SearchModalProps) {
   const [searchTerm, setSearchTerm] = useState('');
 
   const handleClose = () => {
@@ -36,7 +42,7 @@ export default function SearchModal({ isOpen, onClose, onSelectProduct }: Search
   const searchResults = useMemo(() => {
     if (!searchTerm.trim()) return [];
     const query = searchTerm.toLowerCase().trim();
-    return ALL_PRODUCTS.filter(
+    return products.filter(
       (p) =>
         p.name.toLowerCase().includes(query) ||
         p.colorName.toLowerCase().includes(query) ||
@@ -44,7 +50,7 @@ export default function SearchModal({ isOpen, onClose, onSelectProduct }: Search
         p.category.toLowerCase().includes(query) ||
         p.description.toLowerCase().includes(query)
     );
-  }, [searchTerm]);
+  }, [products, searchTerm]);
 
   if (!isOpen) return null;
 
